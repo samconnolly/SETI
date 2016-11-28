@@ -1,0 +1,30 @@
+<! The main page, showing the blog entries >
+{% extends "layout.html" %}
+{% block body %}
+
+{% if session.logged_in %}
+	{% if session.admin == True%}
+	{% set m = entries|length - n %}
+	{{entries[m].username}} 
+			<br>
+			<br>
+			<h2> Edit Post </h2>
+			<form action="{{ url_for('mod_entry',n=n) }}" method=post class=add-entry>
+			<dl>
+			<dt>Title:
+			<dd><textarea name=title rows=1 cols=30 >{{entries[m].title}}</textarea>
+			<dt>Text:
+			<dd><textarea name=text rows=10 cols=100 >{{entries[m].text}}</textarea>
+
+			<dd><button style="float:center;" type=submit value="{{entries[m].etime}}" name="submit"> Submit </button>
+			</form>	  		
+
+	{% else %}	
+			<br>
+			You not allowed on this page. Go away.
+			<br>
+	{% endif %}
+{% endif %}
+<hr>
+
+{% endblock %}

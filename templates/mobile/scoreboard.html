@@ -1,0 +1,39 @@
+<! Scoreboard page >
+{% extends "/mobile/layout.html" %}
+{% block body %}
+
+<h1>Score Board</h1>
+<br>
+
+<h1> Overall <h1>
+{% for score in scores %}
+	{% if session.username == score[0]  %}
+		<li><h2>{{score[0]}} - {{score[1]}} point(s)</h2></li>
+	{% else %}
+		<li><h3>{{score[0]}} - {{score[1]}} point(s)</h3></li>
+	{% endif %}
+{% else %}
+	<li><em> No Teams </em>
+{% endfor %}
+
+
+<h1> Science <h1>
+{% for score in sscores %}
+	{% if session.username == score[0]%}
+		<li><h2>{{score[0]}} - {{score[1]}} point(s)</h2></li>
+	{% else %}
+		<li><h3>{{score[0]}} - {{score[1]}} point(s)</h3></li>
+	{% endif %}
+{% endfor %}
+
+<h1> Media <h1>
+{% for score in mscores %}
+	{% if session.username == score[0]  %}
+		<li><h2>{{score[0]}} - {{score[1]}} point(s)</h3></li>
+	{% else %}
+		<li><h3>{{score[0]}} - {{score[1]}} point(s)</h3></li>
+	{% endif %}
+{% endfor %}
+
+</ul>
+{% endblock %}

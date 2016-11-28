@@ -1,0 +1,148 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<script>
+/**
+* Function that tracks a click on an outbound link in Analytics.
+* This function takes a valid URL string as an argument, and uses that URL string
+* as the event label. Setting the transport method to 'beacon' lets the hit be sent
+* using 'navigator.sendBeacon' in browser that support it.
+*/
+var trackOutboundLink = function(url,name) {
+   ga('send', 'event', 'outbound', name, url, {
+     'transport': 'beacon',
+     'hitCallback': function(){document.location = url;}
+   });
+}
+</script>
+
+<div id="main_content">
+
+
+	<!-- LEFT SIDE -->
+	<div id="page_content_left_small">
+		<br>
+		<div class="title2">	Tweet Us #BreakTheCode </div>	
+
+		<!-- Twitter Feed -->
+
+		 <a class="twitter-timeline" href="https://twitter.com/seti_code" data-widget-id="477095578476613633">Tweets by @seti_code</a>
+		<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+ 	</div>
+	<!-- Right SIDE -->
+	<div id="page_content_right_big">
+		<p></p>
+		<div class="title2">Interesting Seti Links </b>	</div>
+
+		<div class="title3">
+
+			Here are some links we've gathered to sites about SETI searches and related science that might inspire you or aid you during the challenge:
+			<p>
+			</p>
+
+		<!-- 	<h2> Teacher Resources </h2><br><br>
+
+			<li><a href='/static/SETICipherChallenge.pdf' > SETI Cipher Challenge Lesson Plans for Teachers</a><p></p>
+
+			<h3 ><font size="3em"> Contents: </font></h3>
+			    1. Aliens and Exoplanets: Our Search for Extraterrestrial Life
+				<br>
+    			2. Cracking Ciphers and Codes / Binary Code
+				<br>
+    			3. Angular Resolution and Detecting Light Using Telescopes: Optical and Radio Astronomy
+				<br>
+    			4. Particle Physics
+				<br>
+    			5. String Theory, Extra Dimensions and Parallel Universe
+				<br>
+				<br> -->
+				
+			<h2> Research Links </h2><br><br>
+
+			<li><a href='http://supernova.soton.ac.uk/' onclick="trackOutboundLink('http://supernova.soton.ac.uk/','SotonSupernovae'); return false;" >University of Southampton Supernova Group  </a><p></p>
+
+			<li><a href='http://www.southampton.ac.uk/stag/index.page' onclick="trackOutboundLink('http://www.southampton.ac.uk/stag/index.page','STAG'); return false;" >University of Southampton Theory, Astrophycics and Gravity research centre (STAG) </a><p></p>
+
+			<li><a href='http://www.astro.soton.ac.uk/' onclick="trackOutboundLink('http://www.astro.soton.ac.uk/','SotonAstro'); return false;" >University of Southampton Astronomy Group  </a><p></p>
+
+			<li><a href='https://icecube.wisc.edu/' onclick="trackOutboundLink('https://icecube.wisc.edu/','IceCube'); return false;"> The IceCube Detector  </a><p></p>
+
+
+			<li><a href='http://www.hep.phys.soton.ac.uk/' onclick="trackOutboundLink('http://www.hep.phys.soton.ac.uk/','SotonHEP'); return false;"  >University of Southampton High Energy Physics Group  </a><p></p>
+
+			<li><a href='http://www.southampton.ac.uk/~evans/TS/' onclick="trackOutboundLink('http://www.southampton.ac.uk/~evans/TS/','NickParticle'); return false;" >Prof Nick Evan's guide to Theoretical Particle Physics  </a><p></p>
+
+			<li><a href='http://www.southampton.ac.uk/~sdc1g08/' onclick="trackOutboundLink('http://www.southampton.ac.uk/~sdc1g08/','SamResearch'); return false;" > Dr. Sam Connolly's Research Page  </a><p></p>
+
+			<li><a href='http://jhmatthews.github.io/' onclick="trackOutboundLink('http://jhmatthews.github.io/','JamesResearch'); return false;" > Dr. James Matthews' Research Page</a><p></p>
+
+			<li><a href='http://www.southampton.ac.uk/~jvhs1g12' onclick="trackOutboundLink('http://www.southampton.ac.uk/~jvhs1g12','linkName');
+return false;" > Juan Hernandez's Research Page</a><p></p>
+
+			<li><a href="http://www.southampton.ac.uk/~swm1n12/" onclick="trackOutboundLink('http://www.southampton.ac.uk/~swm1n12/','swm1n12');
+return false;" > Sam Mangham's Research Page </a><p></p>
+
+			<li><a href='http://www.sadiejones.me/' onclick="trackOutboundLink('http://www.sadiejones.me/','SadieResearch'); return false;" > Dr. Sadie Jones' Research Page </a> <br><br>
+
+
+			<li> <a href='https://www.uwrf.edu/FacultyStaff/2030387.cfm' onclick="trackOutboundLink('https://www.uwrf.edu/FacultyStaff/2030387.cfm','JimMadsen'); return false;" > Dr. Jim Madesen's Research Page (IceCube Scientist)</a> <br><br>
+<!-- 
+			<li><a href= "http://home.web.cern.ch/">The CERN website
+			</a><p></p>
+
+			<li><a href= "http://www.atlas.ch/"> The ATLAS Particle Detector
+            </a><p></p>
+
+			<li><a href='http://www.southampton.ac.uk/~evans/NL/'>Prof Nick Evan's e-book 'The Newtown Legacy'   </a><p></p> -->
+<!-- 
+			<li><a href='href=http://particleadventure.org/index.html'  >The Particle Adventure	 </a><p></p>
+
+			<li><a href='href=http://superstringtheory.com/'  >The Official String Theory Website	 </a><p></p> -->
+			<hr>
+			<br><br><h2> SETI Links </h2><br><br>
+
+			<li>
+			<!-- <a href="http://www.southampton.ac.uk/~seti"/>Last year's SETI Cipher Challenge website (2014) -->
+			<a href="/2015/home"/>Last year's SETI Cipher Challenge website (2015)
+			</a><p></p>
+			<a href="/2014/index"/> The 2014 SETI Cipher Challenge website
+			</a><p></p>
+
+			<li><a href="https://twitter.com/seti_code">The SETI Cipher Challenge Twitter page 
+			</a><p></p>
+
+			<li><a href="http://www.seti.org/"target="_blank"class="nav2">The SETI Institute</a><p>
+			</p>
+
+			<li><a href="http://setiathome.ssl.berkeley.edu/"target="_blank"class="nav2"> Search for life using your own computer with SETI@HOME  </a><p>
+			</p>
+
+			<!-- <li> <a href="http://exoplanet.eu/"target="_blank"class="nav2">The extrasolar planet data base</a><p>
+			</p>
+
+			<li><a href=" http://kepler.nasa.gov/"target="_blank"class="nav2">The planet-hunting mission, Kepler</a><p>
+			</p>
+
+			<li> <a href=" http://www.seti.org/ata"target="_blank"class="nav2"> The Allen Telescope Array for listening for extraterrestrials</a><p>
+			</p> -->
+
+			<li><a href=" http://www.space.com/search-for-life/"target="_blank"class="nav2">The Search for Life site</a><p>
+			</p>
+
+			<li><a href="/static/SETIPoster2016.pdf"target="_blank"class="nav2">SETI Cipher Challenge 2016 Poster</a><p>
+			</p>
+
+
+			<li><a href='/static/SETI2014Ciphers.pdf' > SETI Cipher Challenge 2014 ciphers </a>
+			<!-- <li><a href='/static/SETICipherChallengeHandout.pdf' > Student Handout </a> -->
+			<p></p>
+
+
+			<hr>
+<!-- 
+			<li><a href=" http://www.planetary.org/explore/projects/seti/"target="_blank"class="nav2">The Planetary Society</a><p> -->
+			</p>
+		</div>
+	</div>
+</div>
+{% endblock %}

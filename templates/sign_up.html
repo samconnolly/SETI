@@ -1,0 +1,452 @@
+<! The main page, showing the blog entries >
+{% extends "layout.html" %}
+{% block body %}
+
+
+<script>
+function SelectElement(id,valueToSelect)
+{    
+    var element = document.getElementById(id);
+    element.value = valueToSelect;
+}
+</script>
+
+
+{%   set teamName = saved[0] %}
+{%   set teamEmail = saved[1] %}
+{%   set school = saved[2] %}
+{%   set postcode = saved[3] %}
+{%   set teacherName = saved[4] %}
+{%   set teacherEmail = saved[5] %}
+{%   set name1 = saved[6]	%}
+{%   set age1 = saved[7]	%}
+{%   set gender1 = saved[8]	%}
+{%   set year1 = saved[9]	%}
+{%   set phys1 =saved[10]	%}
+{%   set physRate1 =saved[11]	%}
+{%   set sciRate1 = saved[12]	%}
+{%   set sciWords1 = saved[13] %}
+{%   set name2 = saved[14]	%}
+{%   set age2 = saved[15]	%}
+{%   set gender2 = saved[16]%}
+{%   set year2 = saved[17]	%}
+{%   set phys2 =saved[18]	%}
+{%   set physRate2 =saved[19]	%}
+{%   set sciRate2 = saved[20]	%}
+{%   set sciWords2 = saved[21]%}
+{%   set name3 = saved[22]	%}
+{%   set age3 = saved[23]	%}
+{%   set gender3 = saved[24]	%}
+{%   set year3 = saved[25]	%}
+{%   set phys3 =saved[26]	%}
+{%   set physRate3 =saved[27]	%}
+{%   set sciRate3 = saved[28]	%}
+{%   set sciWords3 = saved[29] %}
+{%   set name4 = saved[30]	%}
+{%   set age4 = saved[31]	%}
+{%   set gender4 = saved[32]	%}
+{%   set year4 = saved[33]	%}
+{%   set phys4 = saved[34]	%}
+{%   set physRate4 =saved[35]	%}
+{%   set sciRate4 = saved[36]	%}
+{%   set sciWords4 = saved[37] %}
+{%   set name5 = saved[38]	%}
+{%   set age5 = saved[39]	%}
+{%   set gender5 = saved[40]	%}
+{%   set year5 = saved[41]	%}
+{%   set phys5 =saved[42]	%}
+{%   set physRate5 =saved[43]	%}
+{%   set sciRate5 = saved[44]	%}
+{%   set sciWords5 = saved[45] %}
+
+<h1> Registration </h1>
+
+{% if open == True %}
+	<form action="{{ url_for('request_account') }}" method=post class=request-account>
+	<dl>
+	<h2>Register for Team account</h2><br>
+
+	<br>
+	All fields are manditory to take part in the challenge. There is maximum of
+	5 students per team and a minimum of 2 (this is a team effort!). Teams will be
+	divided into two score boards based on the year group of the eldest member.
+
+	Teachers' names and email addresses
+	will only be used to confirm that the team are all of the correct age to compete
+	and that the provided information is correct. The school postcode will only be used
+	to differentiate between schools of the same name and for statistical purposes.
+	<br>
+	If you have not heard from us within 3 working days, please contact us at seti@soton.ac.uk.
+	Please ask your teacher before giving out their email address!
+	<br><br>
+	The official SETI Cipher Challenge flyer can be seen here:
+	<br><br>
+    <a href="/static/SETIPoster2016.pdf"/>SETI Cipher Challenge flyer </a>
+	<br>
+
+	<br>
+
+
+<h2> Team Details </h2>
+<br>
+
+<table border="0">
+<tr>
+	<td> Team Name (username): </td><td> <input type=text size=30 name=username value="{{teamName}}"> </td>
+	<!-- <br><br> -->
+	<td> Team email: </td><td><input type=test size=30 name=teamemail value="{{teamEmail}}"> </td>
+</tr>
+<tr>
+	<td> Password: </td><td><input type=password size=30 name=password> </td>
+	<!-- <br><br> -->
+	<td> Confirm password: </td><td><input type=password size=30 name=passwordConfirm> </td>
+</tr>
+
+<tr> <td> <br> </td> </tr>
+
+<tr>
+	<td> Team members' school:</td><td><input type=text size=30 name=school  value="{{school}}"> </td>
+	<!-- <br><br> -->
+	<td> Postcode of school:</td><td><input type=text size=30 name=postcode value="{{postcode}}"> </td>
+</tr>
+<tr>
+	<td> Supporting teacher's full name:</td><td><input type=text size=30 name=teachername value="{{teacherName}}"> </td>
+	<!-- <br><br> -->
+	<td> Supporting teachers email:</td><td><input type=text size=30 name=teacheremail value="{{teacherEmail}}"> </td>
+</tr>
+</table>
+<br><br>
+
+
+<h2> Team Member Details </h2>
+
+
+<table border="1">
+<tr>
+	<td> </td>
+	<td> Member 1 </td>
+	<td> Member 2 </td>
+	<td> Member 3 </td>
+	<td> Member 4 </td>
+	<td> Member 5 </td>
+</tr>
+
+<tr>
+	<td>First name:</td> 
+	<td> <input type=text size=20 name=name1 value="{{name1}}"> </td>
+	<td> <input type=text size=20 name=name2 value="{{name2}}"> </td>
+	<td> <input type=text size=20 name=name3 value="{{name3}}"> </td>
+	<td> <input type=text size=20 name=name4 value="{{name4}}"> </td>
+	<td> <input type=text size=20 name=name5 value="{{name5}}"> </td>
+</tr>
+
+<tr>
+	<td>Age:</td> 
+	<td><input type=text size=10 name=age1 value={{age1}}> </td>
+	<td><input type=text size=10 name=age2 value={{age2}}> </td>
+	<td><input type=text size=10 name=age3 value={{age3}}> </td>
+	<td><input type=text size=10 name=age4 value={{age4}}> </td>
+	<td><input type=text size=10 name=age5 value={{age5}}> </td>
+</tr>
+
+<tr>
+	<td>Gender:</td> 
+	<td> <select id="genderChoice1" name=gender1>
+		  <option value="Choose">Please choose*</option>
+		  <option value="Male">Male</option>
+		  <option value="Female">Female</option>
+		  <option value="Other">Other</option>
+		  <option value="Prefer">Prefer not to say</option>
+		</select>
+	</td>
+	<td> <select id="genderChoice2"  name=gender2 >
+		  <option value="Choose">Please choose*</option>
+		  <option value="Male">Male</option>
+		  <option value="Female">Female</option>
+		  <option value="Other">Other</option>
+		  <option value="Prefer">Prefer not to say</option>
+		</select>
+	</td>	<td> <select id="genderChoice3"  name=gender3 >
+		  <option value="Choose">Please choose*</option>
+		  <option value="Male">Male</option>
+		  <option value="Female">Female</option>
+		  <option value="Other">Other</option>
+		  <option value="Prefer">Prefer not to say</option>
+		</select>
+	</td>	<td> <select id="genderChoice4"  name=gender4 >
+		  <option value="Choose">Please choose*</option>
+		  <option value="Male">Male</option>
+		  <option value="Female">Female</option>
+		  <option value="Other">Other</option>
+		  <option value="Prefer">Prefer not to say</option>
+		</select>
+	</td>	<td> <select id="genderChoice5"  name=gender5  >
+		  <option value="Choose">Please choose*</option>
+		  <option value="Male">Male</option>
+		  <option value="Female">Female</option>
+		  <option value="Other">Other</option>
+		  <option value="Prefer">Prefer not to say</option>
+		</select>
+	</td>
+</tr>
+
+<script>
+SelectElement("genderChoice1","{{gender1}}")
+SelectElement("genderChoice2","{{gender2}}")
+SelectElement("genderChoice3","{{gender3}}")
+SelectElement("genderChoice4","{{gender4}}")
+SelectElement("genderChoice5","{{gender5}}")
+</script>
+
+<tr>
+	<td>Year Group:</td> 
+	<td> <select name=year1  id="yearChoice1">
+		  <option value="Choose">Please choose*</option>
+		  <option value="GCSE">GCSE </option>
+		  <option value="ALevel">A-Level </option>
+		  <option value="Other">Other </option>
+		</select>
+	</td>
+	<td> <select  name=year2 id="yearChoice2">
+		  <option value="Choose">Please choose*</option>
+		  <option value="GCSE">GCSE </option>
+		  <option value="ALevel">A-Level </option>
+		  <option value="Other">Other </option>
+		</select>
+	</td>
+	<td> <select name=year3 id="yearChoice3">
+		  <option value="Choose">Please choose*</option>
+		  <option value="GCSE">GCSE </option>
+		  <option value="ALevel">A-Level </option>
+		  <option value="Other">Other </option>
+		</select>
+	</td>
+	<td> <select name=year4 id="yearChoice4">
+		  <option value="Choose">Please choose*</option>
+		  <option value="GCSE">GCSE </option>
+		  <option value="ALevel">A-Level </option>
+		  <option value="Other">Other </option>
+		</select>
+	</td>
+	<td> <select name=year5 id="yearChoice5">
+		  <option value="Choose">Please choose*</option>
+		  <option value="GCSE">GCSE </option>
+		  <option value="ALevel">A-Level </option>
+		  <option value="Other">Other </option>
+		</select>
+	</td>
+</tr>
+
+<script>
+SelectElement("yearChoice1","{{year1}}")
+SelectElement("yearChoice2","{{year2}}")
+SelectElement("yearChoice3","{{year3}}")
+SelectElement("yearChoice4","{{year4}}")
+SelectElement("yearChoice5","{{year5}}")
+</script>
+
+<tr>
+	<td>Do you study Physics?*:</td> 
+	<td> <select name=phys1 id="physChoice1">
+		  <option value="Choose">Please choose*</option>
+		  <option value="yes">Yes</option>
+		  <option value="no">No</option>
+		  </select>
+	</td>
+	<td> <select name=phys2 id="physChoice2">
+		  <option value="Choose">Please choose*</option>
+		  <option value="yes">Yes</option>
+		  <option value="no">No</option>
+		  </select>
+	</td>
+	<td> <select name=phys3 id="physChoice3">
+		  <option value="Choose">Please choose*</option>
+		  <option value="yes">Yes</option>
+		  <option value="no">No</option>
+		  </select>
+	</td>
+	<td> <select name=phys4 id="physChoice4">
+		  <option value="Choose">Please choose*</option>
+		  <option value="yes">Yes</option>
+		  <option value="no">No</option>
+		  </select>
+	</td>
+	<td> <select name=phys5 id="physChoice5">
+		  <option value="Choose">Please choose*</option>
+		  <option value="yes">Yes</option>
+		  <option value="no">No</option>
+		  </select>
+	</td>
+
+</tr>
+
+
+<script>
+SelectElement("physChoice1","{{phys1}}")
+SelectElement("physChoice2","{{phys2}}")
+SelectElement("physChoice3","{{phys3}}")
+SelectElement("physChoice4","{{phys4}}")
+SelectElement("physChoice5","{{phys5}}")
+</script>
+
+<tr>
+	<td> How would you rate your interest in Physics and/or Astronomy?** </td>
+	<td> <select name=physRate1  id="physRateChoice1">
+		  <option value="Choose">Please choose*</option>
+		  <option value="1">1</option>
+		  <option value="2">2</option>
+		  <option value="3">3</option>
+		  <option value="4">4</option>
+		  <option value="5">5</option>
+		  </select>
+	</td>
+	<td> <select name=physRate2   id="physRateChoice2">
+		  <option value="Choose">Please choose*</option>
+		  <option value="1">1</option>
+		  <option value="2">2</option>
+		  <option value="3">3</option>
+		  <option value="4">4</option>
+		  <option value="5">5</option>
+		  </select>
+	</td>
+	<td> <select name=physRate3   id="physRateChoice3">
+		  <option value="Choose">Please choose*</option>
+		  <option value="1">1</option>
+		  <option value="2">2</option>
+		  <option value="3">3</option>
+		  <option value="4">4</option>
+		  <option value="5">5</option>
+		  </select>
+	</td>
+	<td> <select name=physRate4  id="physRateChoice4">
+		  <option value="Choose">Please choose*</option>
+		  <option value="1">1</option>
+		  <option value="2">2</option>
+		  <option value="3">3</option>
+		  <option value="4">4</option>
+		  <option value="5">5</option>
+		  </select>
+	</td>
+	<td> <select name=physRate5  id="physRateChoice5">
+		  <option value="Choose">Please choose*</option>
+		  <option value="1">1</option>
+		  <option value="2">2</option>
+		  <option value="3">3</option>
+		  <option value="4">4</option>
+		  <option value="5">5</option>
+		  </select>
+	</td>
+</tr>
+
+
+<script>
+SelectElement("physRateChoice1","{{physRate1}}")
+SelectElement("physRateChoice2","{{physRate2}}")
+SelectElement("physRateChoice3","{{physRate3}}")
+SelectElement("physRateChoice4","{{physRate4}}")
+SelectElement("physRateChoice5","{{physRate5}}")
+</script>
+
+<tr>
+	<td> How would you rate your interest in new research and Science news?** </td>
+	<td> <select name=sciRate1  id="sciRateChoice1">
+		  <option value="Choose">Please choose*</option>
+		  <option value="1">1</option>
+		  <option value="2">2</option>
+		  <option value="3">3</option>
+		  <option value="4">4</option>
+		  <option value="5">5</option>
+		  </select>
+	</td>
+	<td> <select name=sciRate2 id="sciRateChoice2">
+		  <option value="Choose">Please choose*</option>
+		  <option value="1">1</option>
+		  <option value="2">2</option>
+		  <option value="3">3</option>
+		  <option value="4">4</option>
+		  <option value="5">5</option>
+		  </select>
+	</td>
+	<td> <select name=sciRate3  id="sciRateChoice3">
+		  <option value="Choose">Please choose*</option>
+		  <option value="1">1</option>
+		  <option value="2">2</option>
+		  <option value="3">3</option>
+		  <option value="4">4</option>
+		  <option value="5">5</option>
+		  </select>
+	</td>
+	<td> <select name=sciRate4 id="sciRateChoice4">
+		  <option value="Choose">Please choose*</option>
+		  <option value="1">1</option>
+		  <option value="2">2</option>
+		  <option value="3">3</option>
+		  <option value="4">4</option>
+		  <option value="5">5</option>
+		  </select>
+	</td>
+	<td> <select name=sciRate5  id="sciRateChoice5">
+		  <option value="Choose">Please choose*</option>
+		  <option value="1">1</option>
+		  <option value="2">2</option>
+		  <option value="3">3</option>
+		  <option value="4">4</option>
+		  <option value="5">5</option>
+		  </select>
+	</td>
+</tr>
+
+
+<script>
+SelectElement("sciRateChoice1","{{sciRate1}}")
+SelectElement("sciRateChoice2","{{sciRate2}}")
+SelectElement("sciRateChoice3","{{sciRate3}}")
+SelectElement("sciRateChoice4","{{sciRate4}}")
+SelectElement("sciRateChoice5","{{sciRate5}}")
+</script>
+
+<tr>
+	<td> Please list a few words you would use to describe a Scientist (max. 5) </td>
+	<td> <textarea name=sciWords1 rows=5 cols=15 >{{sciWords1}}</textarea> </td>
+	<td> <textarea name=sciWords2 rows=5 cols=15 >{{sciWords2}}</textarea> </td>
+	<td> <textarea name=sciWords3 rows=5 cols=15 >{{sciWords3}}</textarea> </td>
+	<td> <textarea name=sciWords4 rows=5 cols=15 >{{sciWords4}}</textarea> </td>
+	<td> <textarea name=sciWords5 rows=5 cols=15 >{{sciWords5}}</textarea> </td>
+	<br><br>
+</tr>
+
+</table>
+
+*If GCSE, only choose "yes" if you study physics as a seperate subject (i.e. triple Science). If you are doing the IB, BTECs/NVQs, SQC etc.,
+please choose the age-equilavent qualification.
+<br>
+** 1 = not interested at all --> 5 = very interested
+	<br><br>
+	<dd><button style="float:center;" type=submit value=Add> Add Account </button>
+	</dl>
+	</form>
+{% else %}
+	<br>
+	Registration for the SETI Cipher Challenge is currently closed.
+	<br>
+{% endif %}
+
+{% if session.logged_in and session.admin == True%}
+
+	{% if open == True %}
+		<form action="{{ url_for('close_registration') }}" method=post class=request-account>
+		<button style="float:center;" type=submit value='Close Registration'> Close Registration </button>
+		</form>
+	{% else %}
+		<br>
+		<form action="{{ url_for('open_registration') }}" method=post class=request-account>
+		<button style="float:center;" type=submit value='Open Registration'> Open Registration </button>
+		</form>
+	{% endif %}
+	<br>
+{% endif %}
+
+{% endblock %}
+
+
+

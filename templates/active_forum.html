@@ -1,0 +1,59 @@
+<! The main page, showing all the pages >
+{% extends "layout.html" %}
+{% block body %}
+
+<h1> Forums </h1>
+
+{% for i in range(1,6) %}
+	<br>
+	<h2>Day {{i}} Forums</h2>
+	<form action="{{ url_for('show_entries',n=i) }}" >
+	<br><button type="submit" style="float:center" value=link name="link">Science Forum {{i}}</button>
+	</form>
+	
+	<form action="{{ url_for('show_entries',n=(i+5)) }}" >
+	<br><button type="submit"  style="float:center" value=link name="link">Media Forum {{i}}</button>
+	</form>
+
+	{% if i <= released %}			
+		<font size:"10" color="green">Day {{i}} cipher has been released!</font> <br>
+	{% endif %}
+
+	{% if session.admin == True and session.logged_in %}
+		<br>
+		{% if i != active %}
+			<form action="{{ url_for('activate_forum') }}" method=post>
+			<button type="submit"  style="float:center" value={{i}} name="activate">Activate Day {{i}} Forums</button>
+			</form>
+			<br>
+			<form action="{{ url_for('release_cipher') }}" method=post>
+			<button type="submit"  style="float:center" value={{i}} name="release">Release Day {{i}} Cipher</button>
+			</form>
+		{% else %}
+			<font size:"10" color="green">Day {{i}} forums active!</font> <br>
+		{% endif %}
+	{% endif %}
+{% endfor %}
+
+
+{% if session.admin == True and session.logged_in %}
+	<br><h2>Deactivate All Forums</h2>
+	<form action="{{ url_for('activate_forum') }}" method=post>
+	<br><button type="submit"  style="float:center;color:red" value=0 name="activate">Deactivate All Forums</button>
+	</form>	
+	{% if active == 0 %}
+		All forums inactive
+	{% endif %}
+	<br><h2>Remove all Ciphers</h2>
+	<form action="{{ url_for('release_cipher') }}" method=post>
+	<br><button type="submit"  style="float:center;color:red" value=0 name="release">Remove all Ciphers</button>
+	</form>
+	{% if released == 0 %}
+		No Ciphers released
+	{% endif %}
+{% endif %}
+
+{% endblock %}
+
+
+

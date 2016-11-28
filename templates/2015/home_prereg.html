@@ -1,0 +1,85 @@
+<! The main page, showing all the pages >
+{% extends "layout.html" %}
+{% block body %}
+
+<!-- <h1> HOME PAGE </h1> -->
+
+
+
+<div id="main_content">
+<br>
+<div class="title2">BREAKING NEWS</div>
+
+
+<div id="page_content_left">
+		
+<br>
+<img alt="" src="/static/news24-new.jpg"  border="0" width="440" height="300">  
+
+</div>
+
+
+
+
+<div id="page_content_right">
+		
+<div class="title3">
+
+<p>
+Strange news today, Monday 6th July 2015, from the Large Hadron Collider experiment at CERN, Geneva. Scientists 
+are reporting very high-energy collision events in the LHC detectors when the particle beams are switched off! 
+The Director General of CERN has described everyone as ‘excited but baffled’. Later today CERN has promised to 
+release their first data set to the world community and are inviting scientists world wide to work on the meaning of the mystery.
+</p>
+
+<p>
+No translation of the signal has yet been made and as a result of this the 
+particle physicists will release their data in stages to registered members 
+of the public at 10am daily from 6th-10th July 2015.
+</p>
+
+<p>
+Can you help #BreakTheCode ?
+</p>
+
+<h3> Register here: </h3>
+
+<form action="{{ url_for('sign_up') }}" >
+<button style="width=200px;height:50px;font-size:30px;float:center;" type="submit" value=link name="link"> Registration </button>
+</form>
+
+</div>
+</div>
+
+
+<br><br>	
+
+<!-- <h3> Currently Active Forums: </h3>
+<br><br>
+
+<form action="{{ url_for('show_entries',n=active) }}" >
+<button style="width=200px;height:50px;font-size:30px" type="submit" value=link name="link">Science Forum </button>
+</form>
+
+<form action="{{ url_for('show_entries',n=(active+5)) }}" >
+<button style="width=200px;height:50px;font-size:30px"  type="submit" value=link name="link">Media Forum </button>
+</form>
+
+<br><br>
+
+<form action="{{ url_for('scoreboard') }}" >
+<br><button  style="width=200px;height:50px;font-size:30px" type="submit" value=link name="link">Scoreboard</button>
+</form> -->
+
+
+
+<br><br><br><br>
+<div class="title2">Registration open now!</div>
+
+
+</div>
+
+{% endblock %}
+
+
+

@@ -1,0 +1,72 @@
+<! The main page, showing all the pages >
+{% extends "/mobile/layout.html" %}
+{% block body %}
+
+<h1> HOME PAGE </h1>
+
+<div id="main_content">
+
+<div class="title2">BREAKING NEWS</div>
+
+<br>
+		
+
+<img alt="" src="/static/news24-new.jpg"  border="0" width="600"align=center>  
+
+
+<div class="title3">
+
+<p>
+Strange news today, Monday 4th July 2016, from the IceCube Neutrino Observatory at the South Pole. Scientists 
+are reporting strange patterns in the neutrino readings.
+The Director of IceCube has described everyone as ‘excited but baffled’. Later today CERN has promised to 
+release their first data set to the world community and are inviting scientists world wide to work on the meaning of the mystery.
+</p>
+
+<p>
+No translation of the signal has yet been made and as a result of this the 
+particle physicists will release their data in stages to registered members 
+of the public at 10am daily from 4th-8th July 2016.
+</p>
+
+<p>
+Can you help #BreakTheCode ?
+</p>
+
+<!-- <h3> Register here: </h3>
+
+<form action="{{ url_for('sign_up') }}" >
+<button style="font-size:60px;float:center;" type="submit" value=link name="link"> Registration </button>
+</form>
+ -->
+
+
+Team registration will open on Wednesday 1st June!
+
+Sign up here: <br> <br>
+
+<form action="{{ url_for('sign_up') }}" >
+<button style="font-size:60px;float:center;" type="submit" value=link name="link"> Registration </button>
+</form>
+
+<!-- Check out last year's competition here:
+
+<br><br>
+</div>
+<form action="{{ url_for('index_archive',year=2015) }}" >
+<button style="font-size:60px;float:center;" type="submit" value=link name="link"> SETI Cipher Challenge 2015 </button>
+</form> -->
+
+<br><br><br>
+
+
+<!-- <div class="title2">Registration open now!</div> -->
+<div class="title2">The SETI Cipher Challenge 2016 will take place 4th-8th July.</div>
+
+
+</div>
+
+{% endblock %}
+
+
+

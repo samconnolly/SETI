@@ -1,0 +1,41 @@
+<! The main page, showing the blog entries >
+{% extends "layout.html" %}
+{% block body %}
+<ul class=entries>
+<h1>Staged entries</h1>
+
+<dl><dt>
+{% for entry in entries %}
+<li><h2>{{entry.username}}: {{ entry.title }}</h2>
+{% if entry.forum < 6 %}
+<h3>Science Forum {{ entry.forum }}</h3>
+{% else %}
+<h3>Media Forum {{ entry.forum - 5 }}</h3>
+{% endif %}
+<h3>{{ entry.time }}</h3>
+<br>{{ entry.text.split(";;")[0]|safe }}
+
+<br><br>
+<form action="{{ url_for('submit_staged') }}" method=post class=add-entry>
+<dt>Comments:
+
+{% if entry.text.split(';;')|length > 1 %}
+<dd><textarea name=comments rows=4 cols=100 >{{entry.text.split(";;")[1]}}</textarea>
+{% else %}
+<dd><textarea name=comments rows=4 cols=100 ></textarea>
+{% endif %}
+
+<br><br>Score:&nbsp;<input type=text size=5 name=score>
+<button type="submit" value={{entry.etime}} style="float:center;" name="submit">Submit</button>
+<button type="submit" value={{entry.etime}} name="delete">Delete</button>
+<button type="submit" value={{entry.etime}} name="punish">Punish</button>
+
+<br><br>
+</form>
+
+{% else %}
+<li><em> No entries here so far</em>
+{% endfor %}
+</dl>
+</ul>
+{% endblock %}

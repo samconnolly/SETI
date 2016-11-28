@@ -1,0 +1,76 @@
+<! The main page, showing the blog entries >
+{% extends "/mobile/layout.html" %}
+{% block body %}
+
+<h1> Registration </h1>
+
+{% if open == True %}
+	<form action="{{ url_for('request_account') }}" method=post class=request-account>
+	<dl>
+	<h2>Register for Team account</h2><br>
+
+	<br>
+	All fields are manditory to take part in the challenge. There is maximum of
+	5 students per team and a minimum of 2 (this is a team effort!).
+
+	Teachers' names and email addresses
+	will only be used to confirm that the team are all of the correct age to compete
+	and that the provided information is correct. The school postcode will only be used
+	to differentiate between schools of the same name and for statistical purposes.
+	<br>
+	If you have not heard from us within 3 working days, please contact us at seti@soton.ac.uk.
+	Please ask your teacher before giving out their email address!
+	<br>
+	<br>
+	<dt>Username: &nbsp;<input type=text size=30 name=username>
+	<br><br>
+	<dt>Password: &nbsp;<input type=password size=30 name=password>
+	<br><br>
+	<dt>Team member's school:&nbsp;<input type=text size=30 name=school>
+	<br><br>
+	<dt>Postcode of school:&nbsp;<input type=text size=30 name=postcode>
+	<br><br>
+	<dt>Supporting teacher's full name:&nbsp;<input type=text size=30 name=teachername>
+	<br><br>
+	<dt>Supporting teachers email:&nbsp;<input type=text size=30 name=teacheremail>
+	<br><br>
+	Team Members
+	<br><br>
+	<dt>Name: &nbsp;<input type=text size=30 name=name1>&nbsp;Age: &nbsp;<input type=text size=30 name=age1>
+	<br><br>
+	<dt>Name: &nbsp;<input type=text size=30 name=name2>&nbsp;Age: &nbsp;<input type=text size=30 name=age2>
+	<br><br>
+	<dt>Name: &nbsp;<input type=text size=30 name=name3>&nbsp;Age: &nbsp;<input type=text size=30 name=age3>
+	<br><br>
+	<dt>Name: &nbsp;<input type=text size=30 name=name4>&nbsp;Age: &nbsp;<input type=text size=30 name=age4>
+	<br><br>
+	<dt>Name: &nbsp;<input type=text size=30 name=name5>&nbsp;Age: &nbsp;<input type=text size=30 name=age5>
+	<br><br>
+	<dd><button style="float:center;" type=submit value=Add> Submit </button>
+	</dl>
+	</form>
+{% else %}
+	<br>
+	Registration for the SETI Cipher Challenge is currently closed.
+	<br>
+{% endif %}
+
+{% if session.logged_in and session.admin == True%}
+
+	{% if open == True %}
+		<form action="{{ url_for('close_registration') }}" method=post class=request-account>
+		<button style="float:center;" type=submit value='Close Registration'>Close Registration </button>
+		</form>
+	{% else %}
+		<br>
+		<button style="float:center;" action="{{ url_for('open_registration') }}" method=post class=request-account>
+		<button style="float:center;" type=submit value='Open Registration'>Open Registration </button>
+		</form>
+	{% endif %}
+	<br>
+{% endif %}
+
+{% endblock %}
+
+
+

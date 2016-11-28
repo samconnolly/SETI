@@ -1,0 +1,75 @@
+<! The main page, showing all the pages >
+{% extends "/mobile/layout.html" %}
+{% block body %}
+
+<div id="main_content">
+
+
+
+<!-- <div class="title2">Introduction</div> -->
+
+
+<div class="title2">Introduction </div>
+
+<div class="title3">
+<p>
+The SETI Challenge (6th-10th July 2015) is a competition for UK school pupils aged 14-18. 
+</p>
+
+The storyline is that astronomers have discovered radio signal communications from aliens. Unable to translate 
+the meaning of the signal they have asked for the world science community to help them decipher and interpret the data. 
+The pupil teams will play the role of scientific groups tackling the problem.	<p>
+</p>
+Teams can consist of groups from 1 individual up to a "class"  each team must have the sponsorship of a teacher from their school. ><p>
+</p>
+A new signal from the aliens will be released each morning of the week long challenge at 10am. 
+<p>
+</p>
+Teams can then participate in two challenges:
+	<p>
+</p>
+ <div class="title">Science Challenge: </div> A team can submit up to 3 entries to the science forum each day to score points 
+these entries should contribute to decoding the message, deducing what it tells us about the aliens, or any other relevant science. 	
+<p>
+</p>
+<div class="title">Media Reports: </div> A team can also submit up to 3 entries each day to the news feed
+These should be fictional stories about the impact of the alien signals on people around planet Earth. Light hearted as well as hard hitting exclusives will receive marks. 
+<p>
+</p>
+
+
+<img alt="" src="/static/prizes.png"  border="3" width="245" height="150">  
+<p></p>
+ At the end of the challenge week the top scoring teams will be awarded amazon voucher prizes. The top scoring team in each of the UK and SA
+in the Science Forum will receive &#163;300, the second team &#163;150, and the third team &#163;75.
+<p></p>
+The top scoring team in each of the UK and SA in the Media Forum will receive &#163;150, the second team &#163;75, and the third team &#163;50. We also have 8 &#163;25 prizes for significant other contributions.
+<p></p>
+<p></p>
+<div class="title">
+Have a go !!!
+</div>
+<p></p>
+<p></p>
+ To set the scene here is a sample signal for you to have a go at
+it consists of a modulated radio wave labelled as 1 for a period of high amplitude and 0 for low amplitude 
+(we will give you more detail of the signal in the real challenge but for the moment what message is lurking in here?). 
+The signal has long periods of 10,10,10 but then changes for a period to<p>
+</p>
+10,10,0000001000000100000001100000010100<p>
+</p>
+000011100000010110000001101000<p>
+</p>
+000100010000001001100000010111<p>
+</p>
+00000011101000000,10,10,10<p>
+</p>
+Can you work out what the aliens are trying to communicate? The answer is <a href={{ url_for('answer') }}> here </a>. 
+<p>
+</p>
+We hope you're ready to join us - register your team by following the information <a href={{ url_for('sign_up') }}>here</a>.
+
+</div>
+
+
+{% endblock %}

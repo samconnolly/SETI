@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+
+<!-- <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script> -->
+
+<script type="text/javascript">
+
+
+function initialize() {
+    geocoder = new google.maps.Geocoder(); 
+    
+
+    geocoder.geocode( { 'address': 'SO17 1BJ, UK'}, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+             latLong = results[0].geometry.location;          
+
+        } else {
+            alert('Geocode was not successful for the following reason: ' + status);
+        }
+    });
+    
+    setTimeout(function(){}, 20000);
+}
+
+// $.getJSON($SCRIPT_ROOT + '/_geocode', {
+//         var latLong = 'hello'
+//         wordlist: JSON.stringify(latLong)
+//     }, function(data){
+//         console.log(data.result)
+//         $( "#result" ).text(data.result);
+//     });
+
+</script>
+
+<script type=text/javascript>
+  $(function() {
+    $('a#calculate').bind('click', function() {
+      $.getJSON($SCRIPT_ROOT + '/_geocode', {        
+        a: "test"//$('input[name="a"]').val()
+      }, function(data) {
+
+        $("#result").text(data.result);
+
+      });
+      return false;
+    });
+  });
+</script>
+
+<h1>jQuery Example</h1>
+<p><input type=text size=5 name=a> +
+   <input type=text size=5 name=b> =
+   <span id=result>?</span>
+<p><a href=# id=calculate>calculate server side</a>

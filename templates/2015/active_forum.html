@@ -1,0 +1,26 @@
+<! The main page, showing all the pages >
+{% extends "/2015/layout.html" %}
+{% block body %}
+
+<h1> Forums </h1>
+
+{% for i in range(1,6) %}
+	<br>
+	<h2>Day {{i}} Forums</h2>
+	<form action="{{ url_for('show_entries_archive',n=i,year=year) }}" >
+	<br><button type="submit" style="float:center" value=link name="link">Science Forum {{i}}</button>
+	</form>
+	
+	<form action="{{ url_for('show_entries_archive',year=year,n=(i+5)) }}" >
+	<br><button type="submit"  style="float:center" value=link name="link">Media Forum {{i}}</button>
+	</form>
+
+
+{% endfor %}
+
+
+
+{% endblock %}
+
+
+

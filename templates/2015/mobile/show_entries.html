@@ -1,0 +1,85 @@
+<! The main page, showing the blog entries >
+{% extends "/mobile/layout.html" %}
+{% block body %}
+{% if n < 6 %}
+<h1>Science Forum Day {{ n }}</h1>
+{% else %}
+<h1>Media Forum Day {{ n - 5 }}</h1>
+{% endif %}
+
+{% if n == active or n-5 == active and active != 0 %}
+<h1>ACTIVE</h1>
+
+	{% if session.logged_in %}
+		{% if counts < 3 or session.admin == True%}
+			<br>
+			{% if session.admin == False%}
+			{{ counts }} posts so far - {{ 3 - counts }} to go!
+			{% else %}	
+			Admin - infinite posts!
+			{% endif %}
+			<br>
+			<h2> New Post </h2>
+			<form action="{{ url_for('add_entry',n=n) }}" method=post class=add-entry>
+			<dl>
+			<dt>Title:
+			<dd><input  type=text size=30 name=title>
+			<dt>Text:
+			<dd><textarea style="height=300px;width=600px;" name=text rows=15 cols=100></textarea>
+			<dd><button style="float:center;" type=submit value=Share  name=submit> Submit </button>
+			</form>
+
+			<br>
+			<h2> or... Upload File </h2>
+			<h3> (image, audio and video - the following extensions only: pdf, png, jpg, jpeg, gif, mp4, ogg, mp3, wav)</h3>
+			<br>
+			<dt>Title:
+			<form action="{{ url_for('add_entry',n=n) }}" method=post enctype=multipart/form-data>
+			<dd><input type=text size=30 name=title>
+	  		<p><input type=file name=file>
+	     	<button style="float:center;" type=submit value=Upload name=submit>Submit </button>
+	     	</dl>
+		{% else %}	
+			<br>
+			No posts left on this forum today.
+			<br>
+		{% endif %}
+	{% endif %}
+
+{% endif %}
+
+<ul class=entries>
+
+
+{% for entry in entries %}
+
+	{% if entry.forum == n %}
+
+		<! logo >
+		{% for account in accounts %}
+			{% if account.username == entry.username %}
+				<br>
+				{% if account.logo != None %}
+					<img src="/static/uploads/{{account.logo}}" width="100" height="100" alt="Team logo"  title="logo" border="0" class="logo" align="left" target="_blank" />
+				{% else %}
+					<img src="/static/uploads/alien.png" width="50" height="50" alt="Team logo"  title="logo" border="0" class="logo" align="left" target="_blank" />
+				{% endif %}
+			{% endif %}
+		{% endfor %}
+
+		<li><h2>{{entry.username}}: {{ entry.title }} - {{entry.score}} point(s)</h2>
+		<h3  name=time>{{ entry.time }}</h3>
+		<br>{{ entry.text|safe }}
+
+		{% if session.admin == True and session.logged_in %}
+			<form action="{{ url_for('delete_entry',n=n) }}"  method=post class=delete-entry>
+			<br><button type="submit" value={{entry.etime}} name="delete">Delete</button><br><br>
+			</form>
+		{% endif %}
+	{% endif %}
+
+{% endfor %}
+
+
+</ul>
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+{% block body %}
+
+
+
+<div id="main_content">
+
+<p>
+</p>
+
+<div id="page_content_left_small">
+<div class="title">
+SETI Cipher Challenge 2014
+</div>
+	
+<img alt="" src="/static/news24b.jpg"  border="3" width="245" height="150">  
+</div>
+
+
+
+
+<div id="page_content_right_big">
+<!-- <div class="title2">Intro Problem Solution</div> -->
+<h3>Intro Problem Solution</h3>
+
+
+<div class="title3">Have a go !!</div>
+<div class="whiteonblack">
+<p></p>
+ To set the scene here is a sample signal for you to have a go at… 
+it consists of a modulated radio wave labelled as 1 for a period of high amplitude and 0 for low amplitude 
+(we’ll give you more detail of the signal in the real challenge but for the moment what message is lurking in here?). 
+The signal has long periods of 10,10,10 but then changes for a period to… <p></p>
+10,10…,00000010000001000000011<p></p>00000010100000011100000010110000001101000<p></p>
+000100010000001001100000010111<p></p>00000011101000000,10,10,10 <p></p>
+Can you work out what the aliens are trying to communicate?<p></p>
+<br><p></p>
+<b> Solution:</b> The six 0s at the beginning are code for a "break".. then there is 1.. then a break of 6 zeros.. then 10 and a break and so on... we end up with the sequence of numbers<br><br>
+1 <br>
+10 <br>
+11 <br>
+101 <br>
+111 <br>
+1011 <br>
+1101 <br> 
+10001<br>
+10011<br>
+10111 <br>
+111011<br> <br>
+Since we only have on or off for the signal, binary is a natural counting base... in base 10 these become 1,2,3,5,7,11,13,17,19,23,29... which you may recognise as the 
+prime numbers... so the first team to submit this interpretation would score big points<br> 
+	<p>
+</p>
+
+(if a number of teams suggested different parts of the solution eg that 000000 was a gap then the points could be split).. 
+but you're not done! <br><br>You can score more points by reviewing what prime numbers are and 
+why the aliens might have chosen them... <br><br><p></p>why did they stop after 11 numbers in the sequence?<br> <p></p>Did they have to choose to write their numbers from left to right like we do?<br>
+Speculate away as if you were a real scientist!<p></p> <br><br><br>
+ </div> 
+
+</div>
+
+{% endblock %}

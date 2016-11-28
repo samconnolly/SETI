@@ -1,0 +1,45 @@
+<! The main page, showing all the pages >
+{% extends "/mobile/layout.html" %}
+{% block body %}
+
+<h1> Forums </h1>
+
+{% for i in range(1,6) %}
+	<br>
+	<h2>Day {{i}} Forums</h2>
+	<form action="{{ url_for('show_entries',n=i) }}" >
+	<br><button type="submit" style="float:center" value=link name="link">Science Forum {{i}}</button>
+	</form>
+	<br>
+	<form action="{{ url_for('show_entries',n=(i+5)) }}" >
+	<button type="submit"  style="float:center" value=link name="link">Media Forum {{i}}</button>
+	</form>
+
+
+	{% if session.admin == True and session.logged_in %}
+		<br>
+		{% if i != active %}
+			<form action="{{ url_for('activate_forum') }}" method=post>
+			<button type="submit"  style="float:center" value={{i}} name="activate">Activate Day {{i}} Forums</button>
+			</form>
+		{% else %}
+			<font  color="green">Day {{i}} forums active</font> <br>
+		{% endif %}
+	{% endif %}
+{% endfor %}
+
+
+{% if session.admin == True and session.logged_in %}
+	<br><h2>Deactivate All Forums</h2>
+	<form action="{{ url_for('activate_forum') }}" method=post>
+	<br><button type="submit"  style="float:center;color:red" value=0 name="activate">Deactivate All Forums</button>
+	</form>
+	{% if active == 0 %}
+		All forums inactive
+	{% endif %}
+{% endif %}
+
+{% endblock %}
+
+
+

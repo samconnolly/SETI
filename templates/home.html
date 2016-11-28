@@ -1,0 +1,134 @@
+<! The main page, showing all the pages >
+{% extends "layout.html" %}
+{% block body %}
+
+<!-- <h1> HOME PAGE </h1> -->
+
+
+
+<div id="main_content">
+<br>
+<div class="title2">BREAKING NEWS</div>
+
+
+<div id="page_content_left">
+		
+<br>
+<!-- Check back here at 2pm for the SETI Control Room's interview with an IceCube Scientist!  <br> -->
+
+<!-- <iframe width="420" height="315" src="https://www.youtube.com/embed/Y-X-voGnX3M" frameborder="0" allowfullscreen></iframe> -->
+
+See our interview with IceCube Scientist Jim Madsen here!
+<br>
+<iframe width="400" height="280" src="https://www.youtube.com/embed/TdNYIVRDShk" frameborder="0" allowfullscreen></iframe>
+
+Click <a href="https://plus.google.com/events/cte1omhaqo7hb166boc1ckqco4k" > HERE </a> to go to the Google Hangout and ask your own questions!
+<br><br>
+See <a href='https://www.uwrf.edu/FacultyStaff/2030387.cfm' onclick="trackOutboundLink('https://www.uwrf.edu/FacultyStaff/2030387.cfm','JimMadsen'); return false;" > Dr. Jim Madsen's Research Page (IceCube Scientist) here!</a> 
+<!-- <iframe width="420" height="290" src="https://www.youtube.com/embed/ohGahUgXxRA" frameborder="0" allowfullscreen></iframe> -->
+<!-- <iframe width="420" height="315" src="https://www.youtube.com/embed/kvWvh40fMPw" frameborder="0" allowfullscreen></iframe> -->
+
+</div>
+
+
+
+
+<div id="page_content_right">
+		
+<div class="title3">
+
+<p>
+Strange news today, Monday 4th July 2016, from the IceCube Neutrino Observatory at the South Pole. Scientists 
+are reporting strange patterns in the neutrino readings.
+The Director of IceCube has described everyone as ‘excited but baffled’. Later today the IceCube  collaboration has promised to 
+release their first data set to the world community and are inviting scientists world wide to work on the meaning of the mystery.
+</p>
+
+<p>
+No translation of the signal has yet been made and as a result of this the 
+particle physicists will release their data in stages to registered members 
+of the public at 10am daily from 4th-8th July 2016.
+</p>
+
+<p>
+Can you help #BreakTheCode ?
+</p>
+
+<!-- <h3> Access the currently active forums here: </h3> -->
+
+<!-- <form action="{{ url_for('sign_up') }}" >
+<button style="width=200px;height:50px;font-size:30px;float:center;" type="submit" value=link name="link"> Registration </button>
+</form> -->
+
+<!-- <form action="{{ url_for('show_entries',n=(active)) }}" >
+<button style="width=200px;height:50px;font-size:30px;float:center;" type="submit" value=link name="link"> Science Forum </button>
+</form>
+
+                      
+{% if active != 0%}
+<form action="{{ url_for('show_entries',n=(active+5)) }}" >
+<button style="width=200px;height:50px;font-size:30px;float:center;" type="submit" value=link name="link"> Media Forum </button>
+</form>   
+{% else %}
+<form action="{{ url_for('show_entries',n=11) }}" >
+<button style="width=200px;height:50px;font-size:30px;float:center;" type="submit" value=link name="link"> Media Forum </button>
+</form>    
+{% endif %}  
+
+</div>
+</div> -->
+
+
+<!-- <br><br>	
+
+<h3> Currently Active Forums: </h3>
+<br><br>
+
+<form action="{{ url_for('show_entries',n=active) }}" >
+<button style="width=200px;height:50px;font-size:30px" type="submit" value=link name="link">Science Forum </button>
+</form>
+
+<form action="{{ url_for('show_entries',n=(active+5)) }}" >
+<button style="width=200px;height:50px;font-size:30px"  type="submit" value=link name="link">Media Forum </button>
+</form>
+
+<br><br> -->
+<!-- 
+<form action="{{ url_for('scoreboard') }}" >
+<br><button  style="width=200px;height:50px;font-size:30px" type="submit" value=link name="link">Scoreboard</button>
+</form> -->
+
+<!-- Team registration will open on Wednesday 1st June! -->
+
+Check here to find out who won the prizes:
+<form action="{{ url_for('prizes') }}" >
+<br><button  style="width=200px;height:50px;font-size:30px" type="submit" value=link name="link">Prizes</button>
+</form>
+
+<!-- Check out last year's competition here:
+<form action="{{ url_for('index_archive',year=2015) }}" >
+<br><button  style="width=200px;height:50px;font-size:30px" type="submit" value=link name="link">SETI Cipher Challenge 2015</button>
+</form> -->
+
+<!-- Sign up here: <br> <br>
+
+<form action="{{ url_for('sign_up') }}" >
+<button style="width=200px;height:50px;font-size:30px;float:center;" type="submit" value=link name="link"> Registration </button>
+</form>
+
+
+<br> -->
+
+</div></div>
+
+<br><br><br><br><br><br><br><br>
+<div class="title2">The SETI Cipher Challenge is now finished.</div>
+<!-- <div class="title2">The SETI Cipher Challenge 2016 will take place 4th-8th July.</div> -->
+<!-- <div class="title2">The SETI Cipher Challenge 2016 is now live!</div> -->
+
+</div>
+
+{% endblock %}
+
+
+

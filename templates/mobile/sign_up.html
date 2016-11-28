@@ -1,0 +1,602 @@
+<! The main page, showing the blog entries >
+{% extends "/mobile/layout.html" %}
+{% block body %}
+
+
+<script>
+function SelectElement(id,valueToSelect)
+{    
+    var element = document.getElementById(id);
+    element.value = valueToSelect;
+}
+</script>
+
+
+{%   set teamName = saved[0] %}
+{%   set teamEmail = saved[1] %}
+{%   set school = saved[2] %}
+{%   set postcode = saved[3] %}
+{%   set teacherName = saved[4] %}
+{%   set teacherEmail = saved[5] %}
+{%   set name1 = saved[6]	%}
+{%   set age1 = saved[7]	%}
+{%   set gender1 = saved[8]	%}
+{%   set year1 = saved[9]	%}
+{%   set phys1 =saved[10]	%}
+{%   set physRate1 =saved[11]	%}
+{%   set sciRate1 = saved[12]	%}
+{%   set sciWords1 = saved[13] %}
+{%   set name2 = saved[14]	%}
+{%   set age2 = saved[15]	%}
+{%   set gender2 = saved[16]%}
+{%   set year2 = saved[17]	%}
+{%   set phys2 =saved[18]	%}
+{%   set physRate2 =saved[19]	%}
+{%   set sciRate2 = saved[20]	%}
+{%   set sciWords2 = saved[21]%}
+{%   set name3 = saved[22]	%}
+{%   set age3 = saved[23]	%}
+{%   set gender3 = saved[24]	%}
+{%   set year3 = saved[25]	%}
+{%   set phys3 =saved[26]	%}
+{%   set physRate3 =saved[27]	%}
+{%   set sciRate3 = saved[28]	%}
+{%   set sciWords3 = saved[29] %}
+{%   set name4 = saved[30]	%}
+{%   set age4 = saved[31]	%}
+{%   set gender4 = saved[32]	%}
+{%   set year4 = saved[33]	%}
+{%   set phys4 = saved[34]	%}
+{%   set physRate4 =saved[35]	%}
+{%   set sciRate4 = saved[36]	%}
+{%   set sciWords4 = saved[37] %}
+{%   set name5 = saved[38]	%}
+{%   set age5 = saved[39]	%}
+{%   set gender5 = saved[40]	%}
+{%   set year5 = saved[41]	%}
+{%   set phys5 =saved[42]	%}
+{%   set physRate5 =saved[43]	%}
+{%   set sciRate5 = saved[44]	%}
+{%   set sciWords5 = saved[45] %}
+
+<h1> Registration </h1>
+
+{% if open == True %}
+	<form action="{{ url_for('request_account') }}" method=post class=request-account>
+	<dl>
+	<h2>Register for Team account</h2><br>
+
+	<br>
+	All fields are manditory to take part in the challenge. There is maximum of
+	5 students per team and a minimum of 2 (this is a team effort!). Teams will be
+	divided into two score boards based on the year group of the eldest member.
+
+	Teachers' names and email addresses
+	will only be used to confirm that the team are all of the correct age to compete
+	and that the provided information is correct. The school postcode will only be used
+	to differentiate between schools of the same name and for statistical purposes.
+	<br>
+	If you have not heard from us within 3 working days, please contact us at seti@soton.ac.uk.
+	Please ask your teacher before giving out their email address!
+	<br><br>
+	The official SETI Cipher Challenge flyer can be seen here:
+	<br><br>
+    <a href="/static/SETIPoster2016.pdf"/>SETI Cipher Challenge flyer </a>
+	<br>
+
+	<br>
+
+
+<h2> Team Details </h2>
+<br>
+<p><font size="26">
+Team Name (username): <br> 
+<input type=text size=30 name=username value="{{teamName}}" style="font-size:36px"> 
+ <br>  <br> 
+	Team email: 
+ <br>  
+ <input type=test size=30 name=teamemail value="{{teamEmail}}" style="font-size:36px"> 
+
+ <br>  <br> 
+ Password: 
+ <br> 
+ <input type=password size=30 name=password style="font-size:36px"> 
+ <br>  <br> 
+Confirm password: 
+ <br> 
+ <input type=password size=30 name=passwordConfirm style="font-size:36px"> 
+ <br>  <br> 
+ Team members' school:
+  <br> 
+  <input type=text size=30 name=school  value="{{school}}" style="font-size:36px">
+   <br>  <br> 
+ Postcode of school:
+  <br> 
+  <input type=text size=30 name=postcode value="{{postcode}}" style="font-size:36px"> 
+   <br>  <br> 
+    Supporting teacher's full name:
+     <br> 
+     <input type=text size=30 name=teachername value="{{teacherName}}" style="font-size:36px"> 
+      <br>  <br> 
+Supporting teachers email:
+ <br> 
+ <input type=text size=30 name=teacheremail value="{{teacherEmail}}" style="font-size:36px"> 
+  <br> 
+<br><br>
+
+<h2> Team Member Details </h2>
+
+
+<h2> Member 1 </h2>
+
+First name:
+<br>
+<input type=text size=20 name=name1 value="{{name1}}" style="font-size:36px"> 
+<br>
+Age:
+<br>
+<input type=text size=10 name=age1 value="{{age1}}" style="font-size:36px">
+<br>
+Gender:
+<br>
+<select id="genderChoice1" name=gender1 style="font-size:36px">
+		  <option value="Choose">Please choose*</option>
+		  <option value="Male">Male</option>
+		  <option value="Female">Female</option>
+		  <option value="Other">Other</option>
+		  <option value="Prefer">Prefer not to say</option>
+</select>
+
+<script>
+SelectElement("genderChoice1","{{gender1}}")
+</script>
+<br>
+Year Group:
+<br>
+<select name=year1  id="yearChoice1" style="font-size:36px">
+		  <option value="Choose">Please choose*</option>
+		  <option value="GCSE">GCSE </option>
+		  <option value="ALevel">A-Level </option>
+		  <option value="Other">Other </option>
+</select>
+
+<script>
+SelectElement("yearChoice1","{{year1}}")
+</script>
+<br>
+Do you study Physics?*:
+<br>
+<select name=phys1 id="physChoice1" style="font-size:36px">
+		  <option value="Choose">Please choose*</option>
+		  <option value="yes">Yes</option>
+		  <option value="no">No</option>
+</select>
+
+
+<script>
+SelectElement("physChoice1","{{phys1}}")
+</script>
+<br>
+How would you rate your interest in Physics and/or Astronomy?** 
+<br>
+<select name=physRate1  id="physRateChoice1" style="font-size:36px">
+		  <option value="Choose">Please choose*</option>
+		  <option value="1">1</option>
+		  <option value="2">2</option>
+		  <option value="3">3</option>
+		  <option value="4">4</option>
+		  <option value="5">5</option>
+</select>
+
+
+<script>
+SelectElement("physRateChoice1","{{physRate1}}")
+</script>
+<br>
+How would you rate your interest in new research and Science news?** </td>
+<br>
+<select name=sciRate1  id="sciRateChoice1" style="font-size:36px">
+		  <option value="Choose">Please choose*</option>
+		  <option value="1">1</option>
+		  <option value="2">2</option>
+		  <option value="3">3</option>
+		  <option value="4">4</option>
+		  <option value="5">5</option>
+</select>
+
+<script>
+SelectElement("sciRateChoice1","{{sciRate1}}")
+</script>
+<br>
+Please list a few words you would use to describe a Scientist (max. 5)
+<br>
+<textarea name=sciWords1 rows=5 cols=30 style="font-size:36px; float:center">{{sciWords1}}</textarea> 
+<br><br>
+
+
+<h2> Member 2 </h2>
+
+First name:
+<br>
+<input type=text size=20 name=name2 value="{{name2}}" style="font-size:36px"> 
+<br>
+Age:
+<br>
+<input type=text size=10 name=age2 value="{{age2}}" style="font-size:36px">
+<br>
+Gender:
+<br>
+<select id="genderChoice2" name=gender2 style="font-size:36px">
+		  <option value="Choose">Please choose*</option>
+		  <option value="Male">Male</option>
+		  <option value="Female">Female</option>
+		  <option value="Other">Other</option>
+		  <option value="Prefer">Prefer not to say</option>
+</select>
+
+<script>
+SelectElement("genderChoice2","{{gender2}}")
+</script>
+<br>
+Year Group:
+<br>
+<select name=year2  id="yearChoice2" style="font-size:36px">
+		  <option value="Choose">Please choose*</option>
+		  <option value="GCSE">GCSE </option>
+		  <option value="ALevel">A-Level </option>
+		  <option value="Other">Other </option>
+</select>
+
+<script>
+SelectElement("yearChoice2","{{year2}}")
+</script>
+<br>
+Do you study Physics?*:
+<br>
+<select name=phys2 id="physChoice2" style="font-size:36px">
+		  <option value="Choose">Please choose*</option>
+		  <option value="yes">Yes</option>
+		  <option value="no">No</option>
+</select>
+
+
+<script>
+SelectElement("physChoice2","{{phys2}}")
+</script>
+<br>
+How would you rate your interest in Physics and/or Astronomy?** 
+<br>
+<select name=physRate2  id="physRateChoice2" style="font-size:36px">
+		  <option value="Choose">Please choose*</option>
+		  <option value="1">1</option>
+		  <option value="2">2</option>
+		  <option value="3">3</option>
+		  <option value="4">4</option>
+		  <option value="5">5</option>
+</select>
+
+
+<script>
+SelectElement("physRateChoice2","{{physRate2}}")
+</script>
+<br>
+How would you rate your interest in new research and Science news?** </td>
+<br>
+<select name=sciRate2  id="sciRateChoice2" style="font-size:36px">
+		  <option value="Choose">Please choose*</option>
+		  <option value="1">1</option>
+		  <option value="2">2</option>
+		  <option value="3">3</option>
+		  <option value="4">4</option>
+		  <option value="5">5</option>
+</select>
+
+<script>
+SelectElement("sciRateChoice2","{{sciRate2}}")
+</script>
+<br>
+Please list a few words you would use to describe a Scientist (max. 5)
+<br>
+<textarea name=sciWords2 rows=5 cols=30 style="font-size:36px; float:center">{{sciWords2}}</textarea> 
+<br><br>
+
+
+
+
+<h2> Member 3 </h2>
+
+First name:
+<br>
+<input type=text size=20 name=name3 value="{{name3}}" style="font-size:36px"> 
+<br>
+Age:
+<br>
+<input type=text size=10 name=age3 value="{{age3}}" style="font-size:36px">
+<br>
+Gender:
+<br>
+<select id="genderChoice3" name=gender3 style="font-size:36px">
+		  <option value="Choose">Please choose*</option>
+		  <option value="Male">Male</option>
+		  <option value="Female">Female</option>
+		  <option value="Other">Other</option>
+		  <option value="Prefer">Prefer not to say</option>
+</select>
+
+<script>
+SelectElement("genderChoice3","{{gender3}}")
+</script>
+<br>
+Year Group:
+<br>
+<select name=year3  id="yearChoice3" style="font-size:36px">
+		  <option value="Choose">Please choose*</option>
+		  <option value="GCSE">GCSE </option>
+		  <option value="ALevel">A-Level </option>
+		  <option value="Other">Other </option>
+</select>
+
+<script>
+SelectElement("yearChoice3","{{year3}}")
+</script>
+<br>
+Do you study Physics?*:
+<br>
+<select name=phys3 id="physChoice3" style="font-size:36px">
+		  <option value="Choose">Please choose*</option>
+		  <option value="yes">Yes</option>
+		  <option value="no">No</option>
+</select>
+
+
+<script>
+SelectElement("physChoice3","{{phys3}}")
+</script>
+<br>
+How would you rate your interest in Physics and/or Astronomy?** 
+<br>
+<select name=physRate3  id="physRateChoice3" style="font-size:36px">
+		  <option value="Choose">Please choose*</option>
+		  <option value="1">1</option>
+		  <option value="2">2</option>
+		  <option value="3">3</option>
+		  <option value="4">4</option>
+		  <option value="5">5</option>
+</select>
+
+
+<script>
+SelectElement("physRateChoice3","{{physRate3}}")
+</script>
+<br>
+How would you rate your interest in new research and Science news?** </td>
+<br>
+<select name=sciRate3  id="sciRateChoice3" style="font-size:36px">
+		  <option value="Choose">Please choose*</option>
+		  <option value="1">1</option>
+		  <option value="2">2</option>
+		  <option value="3">3</option>
+		  <option value="4">4</option>
+		  <option value="5">5</option>
+</select>
+
+<script>
+SelectElement("sciRateChoice3","{{sciRate3}}")
+</script>
+<br>
+Please list a few words you would use to describe a Scientist (max. 5)
+<br>
+<textarea name=sciWords3 rows=5 cols=30 style="font-size:36px; float:center">{{sciWords3}}</textarea> 
+<br><br>
+
+
+<h2> Member 4 </h2>
+
+First name:
+<br>
+<input type=text size=20 name=name4 value="{{name4}}" style="font-size:36px"> 
+<br>
+Age:
+<br>
+<input type=text size=10 name=age4 value="{{age4}}" style="font-size:36px">
+<br>
+Gender:
+<br>
+<select id="genderChoice4" name=gender4 style="font-size:36px">
+		  <option value="Choose">Please choose*</option>
+		  <option value="Male">Male</option>
+		  <option value="Female">Female</option>
+		  <option value="Other">Other</option>
+		  <option value="Prefer">Prefer not to say</option>
+</select>
+
+<script>
+SelectElement("genderChoice4","{{gender4}}")
+</script>
+<br>
+Year Group:
+<br>
+<select name=year4  id="yearChoice4" style="font-size:36px">
+		  <option value="Choose">Please choose*</option>
+		  <option value="GCSE">GCSE </option>
+		  <option value="ALevel">A-Level </option>
+		  <option value="Other">Other </option>
+</select>
+
+<script>
+SelectElement("yearChoice4","{{year4}}")
+</script>
+<br>
+Do you study Physics?*:
+<br>
+<select name=phys4 id="physChoice4" style="font-size:36px">
+		  <option value="Choose">Please choose*</option>
+		  <option value="yes">Yes</option>
+		  <option value="no">No</option>
+</select>
+
+
+<script>
+SelectElement("physChoice4","{{phys4}}")
+</script>
+<br>
+How would you rate your interest in Physics and/or Astronomy?** 
+<br>
+<select name=physRate4  id="physRateChoice4" style="font-size:36px">
+		  <option value="Choose">Please choose*</option>
+		  <option value="1">1</option>
+		  <option value="2">2</option>
+		  <option value="3">3</option>
+		  <option value="4">4</option>
+		  <option value="5">5</option>
+</select>
+
+
+<script>
+SelectElement("physRateChoice4","{{physRate4}}")
+</script>
+<br>
+How would you rate your interest in new research and Science news?** </td>
+<br>
+<select name=sciRate4  id="sciRateChoice4" style="font-size:36px">
+		  <option value="Choose">Please choose*</option>
+		  <option value="1">1</option>
+		  <option value="2">2</option>
+		  <option value="3">3</option>
+		  <option value="4">4</option>
+		  <option value="5">5</option>
+</select>
+
+<script>
+SelectElement("sciRateChoice4","{{sciRate4}}")
+</script>
+<br>
+Please list a few words you would use to describe a Scientist (max. 5)
+<br>
+<textarea name=sciWords4 rows=5 cols=30 style="font-size:36px; float:center">{{sciWords4}}</textarea> 
+<br><br>
+
+
+<h2> Member 5 </h2>
+
+First name:
+<br>
+<input type=text size=20 name=name5 value="{{name5}}" style="font-size:36px"> 
+<br>
+Age:
+<br>
+<input type=text size=10 name=age5 value="{{age5}}" style="font-size:36px">
+<br>
+Gender:
+<br>
+<select id="genderChoice5" name=gender5 style="font-size:36px">
+		  <option value="Choose">Please choose*</option>
+		  <option value="Male">Male</option>
+		  <option value="Female">Female</option>
+		  <option value="Other">Other</option>
+		  <option value="Prefer">Prefer not to say</option>
+</select>
+
+<script>
+SelectElement("genderChoice5","{{gender5}}")
+</script>
+<br>
+Year Group:
+<br>
+<select name=year5  id="yearChoice5" style="font-size:36px">
+		  <option value="Choose">Please choose*</option>
+		  <option value="GCSE">GCSE </option>
+		  <option value="ALevel">A-Level </option>
+		  <option value="Other">Other </option>
+</select>
+
+<script>
+SelectElement("yearChoice5","{{year5}}")
+</script>
+<br>
+Do you study Physics?*:
+<br>
+<select name=phys5 id="physChoice5" style="font-size:36px">
+		  <option value="Choose">Please choose*</option>
+		  <option value="yes">Yes</option>
+		  <option value="no">No</option>
+</select>
+
+
+<script>
+SelectElement("physChoice5","{{phys5}}")
+</script>
+<br>
+How would you rate your interest in Physics and/or Astronomy?** 
+<br>
+<select name=physRate5  id="physRateChoice5" style="font-size:36px">
+		  <option value="Choose">Please choose*</option>
+		  <option value="1">1</option>
+		  <option value="2">2</option>
+		  <option value="3">3</option>
+		  <option value="4">4</option>
+		  <option value="5">5</option>
+</select>
+
+
+<script>
+SelectElement("physRateChoice5","{{physRate5}}")
+</script>
+<br>
+How would you rate your interest in new research and Science news?** </td>
+<br>
+<select name=sciRate5  id="sciRateChoice5" style="font-size:36px">
+		  <option value="Choose">Please choose*</option>
+		  <option value="1">1</option>
+		  <option value="2">2</option>
+		  <option value="3">3</option>
+		  <option value="4">4</option>
+		  <option value="5">5</option>
+</select>
+
+<script>
+SelectElement("sciRateChoice5","{{sciRate5}}")
+</script>
+<br>
+Please list a few words you would use to describe a Scientist (max. 5)
+<br>
+<textarea name=sciWords5 rows=5 cols=30 style="font-size:36px; float:center">{{sciWords5}}</textarea> 
+<br><br>
+
+*If GCSE, only choose "yes" if you study physics as a seperate subject (i.e. triple Science)
+<br>
+** 1 = not interested at all --> 5 = very interested
+	<br><br><br>
+	<dd><button style="float:center;" type=submit value=Add> Add Account </button>
+	</dl>
+	
+</form>
+
+</font></p>
+
+<br><br>
+{% else %}
+	<br>
+	Registration for the SETI Cipher Challenge is currently closed.
+	<br>
+{% endif %}
+
+{% if session.logged_in and session.admin == True%}
+
+	{% if open == True %}
+		<form action="{{ url_for('close_registration') }}" method=post class=request-account>
+		<button style="float:center;" type=submit value='Close Registration'> Close Registration </button>
+		</form>
+	{% else %}
+		<br>
+		<form action="{{ url_for('open_registration') }}" method=post class=request-account>
+		<button style="float:center;" type=submit value='Open Registration'> Open Registration </button>
+		</form>
+	{% endif %}
+	<br><br><br>
+{% endif %}
+
+{% endblock %}
+
+
+

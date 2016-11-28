@@ -1,0 +1,95 @@
+<! The main page, showing all the pages >
+{% extends "/mobile/layout.html" %}
+{% block body %}
+
+<div id="main_content">
+
+
+
+<!-- <div class="title2">Introduction</div> -->
+
+
+<div class="title2">Introduction </div>
+
+<div class="title3">
+<p>
+The SETI Challenge (4th-8th July 2016) is a competition for UK school pupils aged 14-18. 
+</p>
+
+This year’s challenge is set within the story line of the IceCube Neutrino Observatory at the South Pole, seeing strange, regular patterns in the neutrinos it is detecting!
+During the five days of the challenge Mon 4th – Fri 8th July 2016 the coded data will be released to the registered student teams through our challenge website. Teams will be awarded points based on the speed, accuracy and novelty of their submissions to the forum. 
+
+The challenges encode information about physics, mathematics, biology, chemistry and astronomy and will grow in difficulty each day.
+<p>
+</p>
+Students teams (up to 5 pupils aged 14-18 years old) should register on the website before Friday 3rd July.  ><p>
+</p>
+
+The competition will run from 9am-6:30pm on the 4th -8th July and is open to students aged 14-18 years at schools/colleges in the UK. All teams will take part in the same competition,
+however the scores will be split into two scoreboards, one for GCSE (years 10 and 11) students
+and one for A-Level students (years 11 and 12). Mixed teams and younger entrants are allowed, but will be scored according to the year group of the oldest member of the team.
+
+Please direct any enquires about the challenge to seti@soton.ac.uk
+<p>
+</p>
+A school/college can enter as many teams as they like as long as there are at 
+least 2 students in each team (with a maximum of 5 students per team). The more the merrier!
+<p>
+</p>
+Student teams can participate in two forums:
+    <p>
+</p>
+ <div class="title">Science Challenge: </div> 
+A team can submit up to 3 entries a day to the science forum to score points. Each entry can get up to a maximum of 100 points. These entries should contribute to decoding the message, deducing what it tells us about the aliens, or any other relevant science.     
+<p>
+</p>
+<div class="title">Media Reports: </div> 
+A team can also submit up to 3 entries each day to the media forum. Each media entry can get up to a maximum of 100 points. These can be fictional stories, newspapers, videos or any other novel idea that conveys the impact of the alien signals. Light hearted/humorous entries, as well as hard hitting exclusives, will receive high marks.
+
+ 
+<br><br><br>
+<img alt="" src="/static/prizes.png"  border="3" width="245" height="150">  
+<p></p>
+The points for each submission will be added up across the 5 days with the highest scoring teams being awarded prizes at the end of the challenge.
+All forum entries will be moderated as soon as possible after the entry has being submitted. The SETI cipher challenge team consists of a group of particle physicists, astrophysicists and Team Mitchell (who won the challenge last year) working from a control room at the University of Southampton.
+ <p></p>
+ At the end of the challenge week the top scoring teams on each scoreboard will be awarded amazon voucher prizes. The top scoring team on each scoreboard
+in the Science Forum will receive &#163;300 and the second team &#163;100
+<p></p>
+The top scoring team on each scoreboard in the Media Forum will receive &#163;100 and the second team &#163;50. 
+<p></p>
+We also have 4 &#163;25 prizes for significant other contributions (one for each forum/age group, not dependent on score at all!).
+<p></p>
+At the end of the competition we will ask the teams to fill in a short questionnaire - this
+will be a requirement to be eligible for any of the prizes, and give you access to a individual
+certificates of participation, so please fill them in! (It will also help to make sure we can run the competition again in the future!)
+
+<p></p>
+<p></p>
+<div class="title">
+Have a go !!!
+</div>
+<p></p>
+<p></p>
+ To set the scene here is a sample signal for you to have a go at
+it consists of a modulated radio wave labelled as 1 for a period of high amplitude and 0 for low amplitude 
+(we will give you more detail of the signal in the real challenge but for the moment what message is lurking in here?). 
+The signal has long periods of 10,10,10 but then changes for a period to<p>
+</p>
+10,10,0000001000000100000001100000010100<p>
+</p>
+000011100000010110000001101000<p>
+</p>
+000100010000001001100000010111<p>
+</p>
+00000011101000000,10,10,10<p>
+</p>
+Can you work out what the aliens are trying to communicate? The answer is <a href={{ url_for('answer') }}> here </a>. 
+<p>
+</p>
+We hope you're ready to join us - register your team by following the information <a href={{ url_for('sign_up') }}>here</a>.
+
+</div>
+
+
+{% endblock %}

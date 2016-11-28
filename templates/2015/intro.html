@@ -1,0 +1,135 @@
+<! The main page, showing all the pages >
+{% extends "layout.html" %}
+{% block body %}
+
+<div id="main_content">
+
+
+
+<!-- <div class="title2">Introduction</div> -->
+
+<br>
+<div class="title2">Introduction </div>
+
+<div class="title3">
+<p>
+The SETI Challenge (6th-10th July 2015) is a competition for UK school pupils aged 14-18. 
+</p>
+
+This year’s challenge is set within the story line of the Large Hadron Collider (LHC) at CERN detecting particle collisions in its detectors, even though the particle beams are switched off! 
+During the five days of the challenge Mon 6th – Fri 10th July 2015 the coded data will be released to the registered student teams through our challenge website. Teams will be awarded points based on the speed, accuracy and novelty of their submissions to the forum. 
+
+The challenges encode information about physics, mathematics, biology, chemistry and astronomy and will grow in difficulty each day.
+<p>
+</p>
+Students teams (up to 5 pupils aged 14-18 years old) should register on the website before Friday 3rd July.  ><p>
+</p>
+
+The competition will run from 9am-6pm on the 6th -10th July and is open to students aged 14-18 years at schools/colleges in the UK.
+
+Please direct any enquires about the challenge to seti@soton.ac.uk
+<p>
+</p>
+A school/college can enter as many teams as they like as long as there are at 
+least 2 students in each team (with a maximum of 5 students per team). The more the merrier!
+<p>
+</p>
+Student teams can participate in two forums:
+	<p>
+</p>
+ <div class="title">Science Challenge: </div> 
+A team can submit up to 3 entries a day to the science forum to score points. Each entry can get up to a maximum of 100 points. These entries should contribute to decoding the message, deducing what it tells us about the aliens, or any other relevant science. 	
+<p>
+</p>
+<div class="title">Media Reports: </div> 
+A team can also submit up to 3 entries each day to the media forum. Each media entry can get up to a maximum of 100 points. These can be fictional stories, newspapers, videos or any other novel idea that conveys the impact of the alien signals. Light hearted/humorous entries, as well as hard hitting exclusives, will receive high marks.
+
+ 
+
+<p>
+</p>
+Here's an example video made by Team Mitchell, last year's winners, explaining
+a bit about extra dimensions:
+<br><br>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/L8igkr2pNjc" frameborder="0" allowfullscreen></iframe>
+<p>
+</p>
+
+<p>
+</p>
+And another, about the partical detectors at CERN (also by Team Mitchell!):
+<br><br>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/RFuvmoToVCA" frameborder="0" allowfullscreen></iframe>
+
+<p>
+</p>
+<br><br><br>
+<img alt="" src="/static/ATLAS-VirtualVisits.jpg"  border="3" width="800"> 
+
+<br><br>
+On the 3rd day of challenge (Wed 8th July) at 12.30pm student teams will get the chance to participate in a video conference LIVE to the ATLAS control room at the Large Hadron Collider at CERN! 
+
+The Particle Physicists who work with the ATLAS detector will be available to answer questions LIVE! and may even give some clues to help teams #BreakTheCode !
+
+If you have access to a computer at lunchtime on Wednesday please click on the link below:
+
+<br><br>
+<a href="https://vidyoportal.cern.ch/flex.html?roomdirect.html&key=P5bTn2wuugkb" > CERN VIDYO PORTAL </a> 
+<br><br>
+Make sure you are opening the link in Internet Explorer or Firefox (it doesn’t work in Chrome).
+
+After you click this link you will be asked to download a plugin.
+
+After you download this you just need to type in your team name then press the green ‘Join’ button and then you should see both our control room at the University and the ATLAS Control Room at CERN.
+
+If you have any questions or problems joining the room please let us know before Wednesday afternoon!
+
+If you can’t access the webcast live to ask questions you can still watch it online here:
+<br><br>
+<a href="http://atlas-live-virtual-visit.web.cern.ch/atlas-live-virtual-visit/2015/Southampton-2015.html" > CERN WEBCAST </a> 
+<br><br>
+
+<img alt="" src="/static/cernwebcast.png"  border="3" width="800"> 
+<br><br>
+Technical requirements to participate in these LIVE video chats can be found <a href="http://atlas-live-virtual-visit.web.cern.ch/atlas-live-virtual-visit/pages/ATLASvv-tech.html" > here </a> 
+<p>
+</p>
+<br><br><br>
+<img alt="" src="/static/prizes.png"  border="3" width="245" height="150">  
+<p></p>
+The points for each submission will be added up across the 5 days with the highest scoring teams being awarded prizes at the end of the challenge.
+All forum entries will be moderated as soon as possible after the entry has being submitted. The SETI cipher challenge team consists of a group of particle physicists, astrophysicists and Team Mitchell (who won the challenge last year) working from a control room at the University of Southampton.
+ <p></p>
+ At the end of the challenge week the top scoring teams will be awarded amazon voucher prizes. The top scoring team 
+in the Science Forum will receive &#163;300, the second team &#163;150, and the third team &#163;75.
+<p></p>
+The top scoring team in the Media Forum will receive &#163;150, the second team &#163;75, and the third team &#163;50. We also have 8 &#163;25 prizes for significant other contributions.
+<p></p>
+<p></p>
+<div class="title">
+Have a go !!!
+</div>
+<p></p>
+<p></p>
+ To set the scene here is a sample signal for you to have a go at
+it consists of a modulated radio wave labelled as 1 for a period of high amplitude and 0 for low amplitude 
+(we will give you more detail of the signal in the real challenge but for the moment what message is lurking in here?). 
+The signal has long periods of 10,10,10 but then changes for a period to<p>
+</p>
+10,10,0000001000000100000001100000010100<p>
+</p>
+000011100000010110000001101000<p>
+</p>
+000100010000001001100000010111<p>
+</p>
+00000011101000000,10,10,10<p>
+</p>
+Can you work out what the aliens are trying to communicate? The answer is <a href={{ url_for('answer') }}> here </a>. 
+<p>
+</p>
+We hope you're ready to join us - register your team by following the information <a href={{ url_for('sign_up') }}>here</a>.
+
+</div>
+
+
+{% endblock %}

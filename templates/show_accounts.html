@@ -1,0 +1,146 @@
+<! The main page, showing the blog entries >
+{% extends "layout.html" %}
+{% block body %}
+{% if session.logged_in %}
+<h1> Accounts </h1>
+{% if error %}<p class=error><strong>Error:</strong> {{ error }}{% endif %}
+<!-- 
+<form action="{{ url_for('add_account') }}" method=post class=add-account>
+<dl>
+<h2>Add new account:</h2><br>
+<dt>Username:&nbsp;<input type=text size=30 name=username>
+<br>
+<dt>Password:&nbsp;<input type=password size=30 name=password>
+<br>
+<dt>School/Institute:&nbsp;<input type=text size=30 name=school>
+<br>
+<dt>Team members: 
+<dt> names &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ages
+<br><input type=text size=30 name=name1>&nbsp;<input type=text size=30 name=age1>
+<br>
+<br>
+<dd><input type=checkbox name=admin>Admin?</input>
+<br>
+<dd><button style="float:center;" type=submit value=Add> Add Account </button>
+</dl>
+</form>
+ -->
+<br><br><br><br>
+
+<h2>Stats:</h2><br>
+
+Ages&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Genders
+<br>
+<canvas id="canvasId"></canvas>
+<!--[if IE]><script src="excanvas.js"></script><![endif]-->
+<script src="/static/barGraph.js"></script>
+
+<script>
+var ctx = document.getElementById("canvasId").getContext("2d");
+                        
+var graph = new BarGraph(ctx);
+graph.margin = 2;
+graph.width = 250;
+graph.height = 150;
+graph.xAxisLabelArr = ["<15", "15", "16", "17", "18"];
+graph.update({{ages}});
+
+</script>
+
+
+<canvas id="canvasId2"></canvas>
+<!--[if IE]><script src="excanvas.js"></script><![endif]-->
+<script src="/static/barGraph.js"></script>
+
+<script>
+var ctx = document.getElementById("canvasId2").getContext("2d");
+                        
+var graph = new BarGraph(ctx);
+graph.margin = 2;
+graph.width = 250;
+graph.height = 150;
+graph.xAxisLabelArr = ["Male", "Female", "Other", "Prefer"];
+graph.update({{genders}});
+
+</script>
+<hr>
+<h2>Teacher email addresses:</h2><br>
+
+{% for email in emails %}
+{{email}};
+{% endfor %}
+
+<hr>
+<h2>Team email addresses:</h2><br>
+
+{% for email in teamEmails %}
+{{email}};
+{% endfor %}
+
+<hr>
+<ul class=accounts>
+<h2>Existing accounts:</h2><br>
+
+{% for entry in entries %}
+
+<br><br><li><h2>Team name:&nbsp;'{{ entry.username }}'&nbsp;&nbsp;&nbsp;&nbsp;Team email:&nbsp;{{ entry.teamemail }}</h2>
+<!--<h3>Password: {{ entry.password }}</h3>-->
+<br><li><h2>School:&nbsp;{{ entry.school }}&nbsp;&nbsp;&nbsp;&nbsp;School Postcode:&nbsp;{{ entry.postcode }}  </h2>
+<br><li><h2>Supporting teacher name:&nbsp;{{ entry.teachername }}&nbsp;&nbsp;&nbsp;&nbsp;Supporting teacher email:&nbsp;{{ entry.teacheremail }}</h2>
+
+<br><br><br><br>
+
+<table border="1" align="center">
+<tr>
+    <td> Team Member </td> <td> Age </td> <td> Gender </td> <td> Category </td> <td> Studies Physics? </td> <td> Physics Rating </td> <td> Science Rating</td> <td> Scientist Words </td>
+</tr>
+
+<tr>
+<td> {{ entry.name1 }} </td> <td> {{ entry.age1 }} </td> <td> {{ entry.gender1 }}</td> <td> {{ entry.year1 }}</td> <td> {{ entry.phys1 }}</td> <td> {{ entry.physRate1 }}</td> <td> {{ entry.sciRate1 }}</td> <td> {{ entry.sciWords1 }}</td> 
+</tr>
+
+<tr>
+<td> {{ entry.name2 }} </td> <td> {{ entry.age2 }} </td> <td> {{ entry.gender2 }}</td> <td> {{ entry.year2 }}</td> <td> {{ entry.phys2 }}</td> <td> {{ entry.physRate2 }}</td> <td> {{ entry.sciRate2 }}</td> <td> {{ entry.sciWords2 }}</td> 
+</tr>
+
+
+{% if entry.name3  != None %}
+<tr>
+<td> {{ entry.name3 }} </td> <td> {{ entry.age3 }} </td> <td> {{ entry.gender3 }}</td> <td> {{ entry.year3 }}</td> <td> {{ entry.phys3 }}</td> <td> {{ entry.physRate3 }}</td> <td> {{ entry.sciRate3 }}</td> <td> {{ entry.sciWords3 }}</td> 
+</tr>
+{% endif %}
+{% if entry.name4  != None %}
+<tr>
+<td> {{ entry.name4 }} </td> <td> {{ entry.age4 }} </td> <td> {{ entry.gender4 }}</td> <td> {{ entry.year4 }}</td> <td> {{ entry.phys4 }}</td> <td> {{ entry.physRate4 }}</td> <td> {{ entry.sciRate4 }}</td> <td> {{ entry.sciWords4 }}</td> 
+</tr>
+{% endif %}
+{% if entry.name5  != None %}
+<tr>
+<td> {{ entry.name5 }} </td> <td> {{ entry.age5 }} </td> <td> {{ entry.gender5 }}</td> <td> {{ entry.year5 }}</td> <td> {{ entry.phys5 }}</td> <td> {{ entry.physRate5 }}</td> <td> {{ entry.sciRate5 }}</td> <td> {{ entry.sciWords5 }}</td> 
+</tr>
+{% endif %}
+
+
+</table>
+
+
+<!--<h3>Password: {{ entry.password }}</h3>-->
+{% if entry.admin == 'true' %}
+ADMIN
+{% endif %}
+
+<br><br>
+<form action="{{ url_for('delete_account') }}"  method=post class=delete-entry>
+<input type=checkbox name=confirm>WARNING! Are you sure you want to delete this account?</input>
+<br><br><button type="submit" value={{entry.id}} style="float:center;" name="delete">Delete</button><br><br>
+</form>
+
+{% else %}
+<li><em>No accounts.</em>
+{% endfor %}
+
+{% else %}
+<em>Admin only. Login as admin to continue.</em>
+{% endif %}
+</ul>
+{% endblock %}

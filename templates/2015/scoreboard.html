@@ -1,0 +1,53 @@
+<! Scoreboard page >
+{% extends "/2015/layout.html" %}
+{% block body %}
+
+<div id="main_content">
+	<br>
+	<div class="title2">Score Board</div>
+
+
+	<!-- <div id="mini_column">
+		<h1> Overall </h1>
+		<ul>
+		{% for score in scores %}
+			{% if session.username == score[0]  %}
+				<li><h3><font color=blue>{{score[0]}} - {{score[1]}} point(s)</font></h3></li>
+			{% else %}
+				<li><h3>{{score[0]}} - {{score[1]}} point(s)</h3></li>
+			{% endif %}
+		{% else %}
+			<li><em> No Teams </em>
+		{% endfor %}
+		</ul>
+	</div> -->
+
+	<div id="mini_column">	
+		<h1> Science </h1>
+		<ul>
+		{% for score in sscores %}
+			{% if session.username == score[0]%}
+				<li><h3><font color=blue>{{score[0]}} - {{score[1]}} point(s)</font></h3></li>
+			{% else %}
+				<li><h3>{{score[0]}} - {{score[1]}} point(s)</h3></li>
+			{% endif %}
+		{% endfor %}
+		</ul>
+	</div>
+
+	<div id="mini_column">
+		<h1> Media </h1>
+		<ul>
+		{% for score in mscores %}
+			{% if session.username == score[0]  %}
+				<li><h3><font color=blue>{{score[0]}} - {{score[1]}} point(s)</font></h3></li>
+			{% else %}
+				<li><h3>{{score[0]}} - {{score[1]}} point(s)</h3></li>
+			{% endif %}
+		{% endfor %}
+		</ul>
+	</div>
+<font color='black'>sdfsdf</font>
+
+</div>
+{% endblock %}

@@ -1,0 +1,407 @@
+{% extends "/2015/layout.html" %}
+{% block body %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Geocoding service</title>
+    <style>
+      html, body, #map-canvas {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+      }
+      #panel {
+        position: absolute;
+        top: 5px;
+        left: 50%;
+        margin-left: -180px;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+      }
+    </style>
+
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+
+    <script>
+var geocoder;
+var map;
+function initialize() {
+  geocoder = new google.maps.Geocoder();
+  var infowindow = new google.maps.InfoWindow();
+  var latlng = new google.maps.LatLng(54.00, -3.00);
+  var mapOptions = {
+    zoom: 6,
+    center: latlng
+  }
+  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+  // add most recent account automatically
+  {% for account in accounts[:1] %}
+	{% if account.admin != "true" %}
+
+	  geocoder.geocode( { 'address': '{{ account.postcode}}, UK'}, function(results, status) {
+	  if (status == google.maps.GeocoderStatus.OK) {
+	  
+	      var marker = new google.maps.Marker({
+	        map: map,
+	        position: results[0].geometry.location,
+	        title:'{{ account.teamname}}' 
+	      });
+
+      	    google.maps.event.addListener(marker,'click',function(){
+       		infowindow.setContent('<font color="black" > {{account.username}} </font>');
+       		infowindow.open(map,marker);
+	       });
+	    } else {
+	    //alert('Geocode was not successful for the following reason: ' + status);
+	    }
+	  });
+	  setTimeout(function(){}, 20000);
+	{% endif %}
+  {% endfor %}
+
+    var Latlngs = [
+    	new google.maps.LatLng(50.9341890,-1.3956850),
+    	new google.maps.LatLng(51.305641,-0.754783),
+    	new google.maps.LatLng(53.4023870,-3.1842950),
+		new google.maps.LatLng(55.9363690,-3.1985750),
+		new google.maps.LatLng(51.5985140,0.0858930),
+		new google.maps.LatLng(51.5685140,0.0858930),
+		new google.maps.LatLng(51.5685140,0.0958930),
+    	new google.maps.LatLng(51.5685140,0.0958930),
+		new google.maps.LatLng(51.5685140,0.0758930),
+		new google.maps.LatLng(51.0989410,-1.1165460),
+		new google.maps.LatLng(51.0989410,-1.1265460),
+		new google.maps.LatLng(51.0989410,-1.1365460),
+		new google.maps.LatLng(51.0989410,-1.1465460),
+		new google.maps.LatLng(51.0989410,-1.1565460),
+		new google.maps.LatLng(51.0989410,-1.1665460),
+		new google.maps.LatLng(51.9066320,-2.1163570),
+		new google.maps.LatLng(51.9066320,-2.1063570),
+		new google.maps.LatLng(51.9066320,-2.1263570),
+		new google.maps.LatLng(52.4336940,-1.8902440),
+		new google.maps.LatLng(52.7088760,-2.7601440),
+		new google.maps.LatLng(52.3018780,0.6871600),
+		new google.maps.LatLng(53.3280290,-3.1850940),
+		new google.maps.LatLng(51.3450940,-0.1897600),
+		new google.maps.LatLng(51.3450940,-0.1997600),
+		new google.maps.LatLng(50.7083910,-2.4537190),
+		new google.maps.LatLng(50.7183910,-2.4537190),
+		new google.maps.LatLng(51.2396340,-0.2024690),
+    	new google.maps.LatLng(52.2976190,-0.6876570),
+    	new google.maps.LatLng(51.5285140,0.0858930),
+    	new google.maps.LatLng(51.5285140,0.0958930),
+    	new google.maps.LatLng(51.0789410,-1.1665460),
+		new google.maps.LatLng(51.0789410,-1.1765460),
+		new google.maps.LatLng(51.5485140,0.0858930),
+		new google.maps.LatLng(53.3380290,-3.1850940),
+		new google.maps.LatLng(53.3380290,-3.1950940),
+		new google.maps.LatLng(53.3380290,-3.2050940),
+    	new google.maps.LatLng(50.9983410,-1.3854470),
+    	new google.maps.LatLng(51.5585140,0.0858930),
+    	new google.maps.LatLng(53.3380290,-3.1850940),
+    	new google.maps.LatLng(53.3380290,-3.1950940),
+    	new google.maps.LatLng(53.3380290,-3.1750940),
+    	new google.maps.LatLng(51.2719060,-1.0789500),
+    	new google.maps.LatLng(51.2719060,-1.0799500),
+    	new google.maps.LatLng(51.546189,-0.177231),
+		new google.maps.LatLng(53.372499,-3.150746),
+		new google.maps.LatLng(53.372499,-3.160746),
+		new google.maps.LatLng(53.372499,-3.170746),
+		new google.maps.LatLng(53.372499,-3.180746),
+		new google.maps.LatLng(53.372499,-3.190746),
+		new google.maps.LatLng(53.372499,-3.200746),
+		new google.maps.LatLng(53.382499,-3.150746),
+		new google.maps.LatLng(53.382499,-3.160746),
+		new google.maps.LatLng(53.382499,-3.170746),
+		new google.maps.LatLng(53.382499,-3.180746),
+		new google.maps.LatLng(53.118469,-3.034975),
+		new google.maps.LatLng(51.519812,-0.611286),
+		new google.maps.LatLng(53.382499,-3.190746),
+    	new google.maps.LatLng(51.568514,0.045893),
+    	new google.maps.LatLng(51.568514,0.055893),
+    	new google.maps.LatLng(51.568514,0.065893),
+    	new google.maps.LatLng(51.568514,0.075893),
+    	new google.maps.LatLng(51.568514,0.085893),
+    	new google.maps.LatLng(51.568514,0.095893),
+    	new google.maps.LatLng(51.568514,0.105893),
+    	new google.maps.LatLng(51.568514,0.115893),
+    	new google.maps.LatLng(51.568514,0.125893),
+    	new google.maps.LatLng(51.519812,-0.611286),
+    	new google.maps.LatLng(51.654701,-3.006201),
+    	new google.maps.LatLng(51.495140,-0.218857),
+    	new google.maps.LatLng(50.836982,-0.157836),
+    	new google.maps.LatLng(53.6809080,-2.6895330),
+    	new google.maps.LatLng(53.6809080,-2.6995330),
+    	new google.maps.LatLng(53.6809080,-2.6795330),
+    	new google.maps.LatLng(53.6809080,-2.6695330),  	
+		new google.maps.LatLng(51.2619060,-1.0789500),
+		new google.maps.LatLng(51.2619060,-1.0889500),
+		new google.maps.LatLng(53.3980920,-2.0889920),
+		new google.maps.LatLng(53.3980920,-2.0989920),
+		new google.maps.LatLng(51.5191480,-0.0945660),
+		new google.maps.LatLng(51.6547010,-3.0062010),
+		new google.maps.LatLng(51.6547010,-3.0162010),
+		new google.maps.LatLng(51.5198120,-0.6112860),
+		new google.maps.LatLng(51.5198120,-0.6212860),
+		new google.maps.LatLng(51.3298770,-0.1932000),
+		new google.maps.LatLng(51.2396340,-0.2024690),
+		new google.maps.LatLng(53.3916740,-3.0165250),
+		new google.maps.LatLng(51.0889410,-1.1465460),
+		new google.maps.LatLng(51.0889410,-1.1565460),
+		new google.maps.LatLng(51.0889410,-1.1665460),
+		new google.maps.LatLng(51.0889410,-1.1765460),
+		new google.maps.LatLng(51.0889410,-1.1865460),
+		new google.maps.LatLng(51.0889410,-1.1965460),
+		new google.maps.LatLng(51.0889410,-1.1365460),
+		new google.maps.LatLng(53.3980920,-2.0889920),
+		new google.maps.LatLng(51.0889410,-1.1265460),
+		new google.maps.LatLng(51.4951400,-0.2188570),
+		new google.maps.LatLng(51.2396340,-0.2024690),
+		new google.maps.LatLng(51.6547010,-3.0062010),
+		new google.maps.LatLng(51.2619060,-1.0789500),
+		new google.maps.LatLng(51.2619060,-1.0889500),
+		new google.maps.LatLng(50.9481990,-2.5277530),
+		new google.maps.LatLng(50.8369820,-0.1578360),
+		new google.maps.LatLng(51.2619060,-1.0789500),
+		new google.maps.LatLng(51.2619060,-1.0889500),
+		new google.maps.LatLng(51.3867890,-0.5114810),
+		new google.maps.LatLng(51.3867890,-0.5214811),
+		new google.maps.LatLng(52.7652110,-1.2030580),
+		new google.maps.LatLng(50.7465780,-1.7219590),
+		new google.maps.LatLng(51.6729480,-3.2245270),
+		new google.maps.LatLng(54.2017150,-2.6038390),
+		new google.maps.LatLng(51.4147580,-0.4210110),
+		new google.maps.LatLng(53.9847860,-1.5228020),
+		new google.maps.LatLng(53.2550850,-3.4381710),
+		new google.maps.LatLng(52.9626590,-1.1561690),
+		new google.maps.LatLng(53.9645270,-1.0874150),
+		new google.maps.LatLng(50.7465780,-1.7219590),
+		new google.maps.LatLng(51.5333450,0.1263870),
+		new google.maps.LatLng(51.8866850,0.8869880),
+		new google.maps.LatLng(50.8179010,-1.0514820),
+		new google.maps.LatLng(51.4951400,-0.2188570),
+		new google.maps.LatLng(55.0027630,-1.6142950),
+		new google.maps.LatLng(52.7652110,-1.2030580),
+		new google.maps.LatLng(52.3018780,0.6871600),
+		new google.maps.LatLng(52.3018780,0.697160),
+    	new google.maps.LatLng(50.9501920,-2.6512130)
+    ];
+ 	var teams = [
+    	'University of Southampton',
+    	'Team Mitchell',
+    	'Schrodingers Katz',
+		'Internet Explorer 6',
+		'SKHS-ODEDRA',
+		'SKHS-EINSTIENSFANGIRLS',
+		'squirtsquad',
+		'skhs-Mugiwara Pirates',
+		'SKHS-Quantum',
+		'MANWICHES',
+		'Flash',
+		'Perins Team 0',
+		'Omniscience',
+		'Super Electrocuted Technological Idiots',
+		'Bosh Pongman',
+		'PGS Alpha',
+		'PGS Beta',
+		'PGS Gamma',
+		'Ramanujan',
+		'ShrewsburySixthForm1',
+		'martinoidas2',
+		"MVP's",
+		'bletchley sharks',
+		'crackers',
+		'Steel Beams',
+		'At Least We Tried',
+    	'jackdale99',
+    	'Wellingborough',
+		'engineers',
+		'Dironi8',
+		'MNPM',
+		'Electrolysis',
+		'Omega Minus',
+		'We CAN',
+		'kezmaz',
+		'maths123',
+    	'Atom Smashers',
+    	'maths123',
+    	'kezmaz',
+    	'We CAN',
+    	'Omega Minus',
+    	'Brown People Unite',
+    	'Squaddy Squad',
+    	'We are photons',
+		'Enigma',
+		'ItsTheTakingPart',
+		'The Theory of Relativiteam',
+		'The Protons',
+		'The Quarks',
+		'The Winners',
+		'Newtons Ninja',
+		'jeevily_code3',
+		'The Differentiators',
+		'The W',
+		'E=MCHammer',
+		'Pythons',
+		'galaxy',
+		'SKHS-That Team',
+		'SKHS-TAKASHI TWO',
+		'ahmegbuter',
+    	'SKHS- Sherlock Ohms',
+		'SKHS-Fobson4',
+		'SKHS-Probies',
+		'JoshiTaughtMe',
+		'skhs-',
+    	'Code-Knackers',
+    	'MERK-M',
+    	'Number1',
+    	'lilemie2',
+    	'BIG SCARY LASERS',
+		'TheGravitons',
+		'RimmersBoys',
+		'Catfish',
+		'Ruthless',
+		'Team Cornetto',
+		"Schrodinger's team",
+		'Let us atom',
+		'Molybdenum',
+		'CityGirls2015',
+		'Alpha Beta Swagger',
+		'5 Seconds of Cipher',
+		'Raven',
+		'Cyfra',
+		'Team Mathia',
+		'wf10286',
+		'jsc248',
+		'Solix',
+		'Solex',
+		'Andromeda',
+		'3Science',
+		'Heterozygoats',
+		'Galaxy14',
+		'ASCENT',
+		'back to the drawing board',
+		'y12kimberj',
+		'ACDC',
+		'Will Faust',
+		'TheSpanishInquisition',
+		'Zero Kelvin',
+		"Einstein's Party Bus",
+		'sgphysics',
+		'Team Rocket',
+		'BS',
+		'Enigma Kids',
+		'SWPSL6',
+		'swps9-10',
+		'Planck Length to Gigaparsec',
+		'Aliens ARE Real!!',
+		'Cillit big bang',
+		'AbsoluteZero',
+		'TheThreeMusketeers',
+		'Violent Pacifists',
+		'Seryddiaeth',
+		'The Strange Quarks',
+		'Bootham',
+		'legends1234',
+		'Space Manatees',
+		'Pits',
+		'Nostromo',
+		'helenrafy',
+		'IntelligentLife',
+		'shreeya.alice',
+		'Team SB',
+		'Squad',
+    	'SCAM'
+	];
+
+    for (i = 0; i < Latlngs.length; i++) { 
+    	var Latlng = Latlngs[i];
+	    var marker = new google.maps.Marker({
+	        map: map,
+	        position: Latlng,
+	        title: teams[i]
+	    });
+
+	  	var listener = new google.maps.event.addListener(marker,'click',function(){
+	   		infowindow.setContent('<font color="black" > ' + this.title + '</font>');
+	   		infowindow.open(map,this);
+	    });
+    }
+
+}
+
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
+
+    </script>
+  </head>
+  <body>
+
+
+<h1>Team Profiles</h1>
+
+<br><br>
+
+{% for account in accounts %}
+	
+	{% if account.admin != "true" and account.username != "Team Mitchell" %}
+		<div class="box">
+
+		{% if account.logo != None %}
+
+
+		<img src="/static/uploads/{{account.logo}}" width="100" height="100" alt="Team logo"  title="logo" border="0" class="logo" float="center" target="_blank" />
+		{% else %}
+
+		<img src="/static/uploads/alien.png" width="100" height="100" alt="Team logo"  title="logo" border="0" class="logo" float="center" target="_blank" />
+		{% endif %}
+
+		<h2><font size="3.5em"> <a float="center"  href="{{ url_for('account_profile_archive',n=account.id,year=year) }}">{{account.username}}</a></font> </h2>
+
+		</div>
+	{% endif %}
+{% endfor %}
+
+<br><br>
+<hr style="height:30px color:#000" >
+<h1> Control Room Team </h1>
+
+{% for account in accounts %}
+	{% if account.admin == "true" or  account.username == "Team Mitchell" %}
+		<div class="box">
+		{% if account.logo != None %}
+
+			<img src="/static/uploads/{{account.logo}}" width="100" height="100" alt="Team logo"  title="logo" border="0" class="logo" float="center" target="_blank" />
+			{% else %}
+
+			<img src="/static/uploads/alien.png" width="100" height="100" alt="Team logo"  title="logo" border="0" class="logo" float="center" target="_blank" />
+		{% endif %}
+
+		<h2><a float="center" href="{{ url_for('account_profile_archive',n=account.id,year=year) }}">{{account.username}}</a></h2>
+		</div>
+	{% endif %}
+{% endfor %} 
+
+<!-- MAP! -->
+<body onload="initialize()">
+<br><br>
+<hr style="height:30px color:#000" >
+
+<h1> Team Locations </h1>
+<br><br>
+
+    <div id="map-canvas"></div>
+
+(click marker for team name)
+
+  </body>
+</html>
+
+{% endblock %}

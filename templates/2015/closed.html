@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+{% block body %}
+
+
+<div id="main_content">
+{% set a = 4 %}
+
+<br><br>
+The SETI Cipher Challenge has now finished.<br><br>
+
+We were so inspired by the media posts from the SETI entrants that we decided to make our own music video. We hope you enjoy :)<br>
+Remember- the future is you, and the science you can do :) \<br><br>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/GeUdXfnMmeU" frameborder="0" allowfullscreen></iframe><br><br\
+<br><br>
+Click here to view the closed forums:
+<br><br>
+<a href={{ url_for('active_forum',n=a )}} > SETI Cipher Challenge 2015 Forums </a> 
+<br><br><!-- 
+And here to view the prizes:
+<br><br>
+<a href={{ url_for('active_forum',n=a )}} > SETI Cipher Challenge 2015 Prizes </a>  -->
+
+<!-- 
+<div id="main_content">
+{% set a = 4 %}
+
+<br><br>
+The SETI Cipher Challenge forums are now closed for the day.
+<br><br>
+Click here to view today's forums:
+<br><br>
+<a href={{ url_for('show_entries',n=a )}} > Day {{a}} Science Forum </a> 
+<br><br>
+<a href={{ url_for('show_entries',n=a+5) }} > Day {{a}} Media Forum </a>  -->
+<!-- 
+The Seti Cipher Challenge has not yet begun, so there are currently no active forums.
+<br><br>
+If you wish to take part, please register using the link above. -->
+<br>
+</div> 
+ 
+{% endblock %}

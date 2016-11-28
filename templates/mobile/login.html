@@ -1,0 +1,16 @@
+<! The login page >
+{% extends "/mobile/layout.html" %}
+{% block body %}
+    <h2>Login</h2>
+    {% if error %}<p class=error><strong>Error:</strong> {{ error }}{% endif %}
+    <form action="{{ url_for('login') }}" method=post>
+        <dl>
+            <dt>Username:
+            <dd><input style="height:50px;width:320px" type=text name=username>
+            <dt>Password:
+            <dd><input style="height:50px;width:320px" type=password name=password>
+            <br><br>
+            <dd><button style="float:center;" type=submit value=Login>Log in</button>
+        </dl>
+    </form>
+{% endblock %}

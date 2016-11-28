@@ -1,0 +1,59 @@
+<! The main page, showing the blog entries >
+{% extends "/2015/layout.html" %}
+{% block body %}
+
+{% if n < 6 %}
+<h1>Science Forum Day {{ n }}</h1>
+{{ cipher|safe }}
+
+{% else %}
+<h1>Media Forum Day {{ n - 5 }}</h1>
+{{ cipher|safe }}
+
+{% endif %}
+
+
+
+<hr>
+<ul class=entries>
+
+{% set t = entries|length %}
+{% for entry in entries %}
+
+	{% if entry.forum == n %}
+
+		<! logo >
+		{% for account in accounts %}
+			{% if account.username == entry.username %}
+				<br>
+				{% if account.logo != None %}
+					<img src="/static/uploads/{{account.logo}}" width="100" height="100" alt="Team logo"  title="logo" border="0" class="logo" align="left" target="_blank" />
+				{% else %}
+					<img src="/static/uploads/alien.png" width="50" height="50" alt="Team logo"  title="logo" border="0" class="logo" align="left" target="_blank" />
+				{% endif %}
+			{% endif %}
+		{% endfor %}
+
+		<li><h2> {{entry.username}}: {{ entry.title }} - {{entry.score}} point(s)</h2>
+		<h3  name=time>{{ entry.time }}</h3>
+		<br>{{ entry.text|safe }}
+		
+		<br><br>
+		<a href="{{ url_for('show_entry',n=t) }}" ><font size="0.1em"> link </font></a>
+		<br>
+
+		{% if session.admin == True and session.logged_in %}
+			<form action="{{ url_for('delete_entry',n=n) }}"  method=post class=delete-entry>
+			<br><button type="submit" value={{entry.etime}} name="delete">Delete</button><br><br>
+			</form>
+			<form action="{{ url_for('edit_entry',n=t) }}"  method=get class=delete-entry>
+			<br><button type="submit" value={{entry.etime}} name="edit">Edit</button><br><br>
+			</form>
+		{% endif %}
+	{% endif %}
+    {% set t = t - 1 %}
+{% endfor %}
+
+
+</ul>
+{% endblock %}

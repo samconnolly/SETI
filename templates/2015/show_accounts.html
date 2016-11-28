@@ -1,0 +1,63 @@
+<! The main page, showing the blog entries >
+{% extends "layout.html" %}
+{% block body %}
+{% if session.logged_in %}
+<h1> Accounts </h1>
+{% if error %}<p class=error><strong>Error:</strong> {{ error }}{% endif %}
+
+<form action="{{ url_for('add_account') }}" method=post class=add-account>
+<dl>
+<h2>Add new account:</h2><br>
+<dt>Username:&nbsp;<input type=text size=30 name=username>
+<br>
+<dt>Password:&nbsp;<input type=password size=30 name=password>
+<br>
+<dt>School/Institute:&nbsp;<input type=text size=30 name=school>
+<br>
+<dt>Team members: 
+<dt> names &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ages
+<br><input type=text size=30 name=name1>&nbsp;<input type=text size=30 name=age1>
+<br><input type=text size=30 name=name2>&nbsp;<input type=text size=30 name=age2>
+<br><input type=text size=30 name=name3>&nbsp;<input type=text size=30 name=age3>
+<br><input type=text size=30 name=name4>&nbsp;<input type=text size=30 name=age4>
+<br><input type=text size=30 name=name5>&nbsp;<input type=text size=30 name=age5>
+<br>
+<br>
+<dd><input type=checkbox name=admin>Admin?</input>
+<br>
+<dd><button style="float:center;" type=submit value=Add> Add Account </button>
+</dl>
+</form>
+
+<ul class=accounts>
+<h2>Existing accounts:</h2><br>
+{% for entry in entries %}
+<li><h2>{{ entry.username }}</h2>
+<li><h2>School: {{ entry.school }}</h2>
+{% if entry.teamemail != 'none' %}
+<li><h2>Team Contact: {{ entry.teamemail }} </h2>
+{% endif %}	
+{% if entry.teachername != 'none' %}
+<li><h2>Supporting Teacher Contact: {{ entry.teachername }} ({{ entry.teacheremail }})</h2>
+{% endif %}	
+{% if entry.postcode != 'none' %}
+<li><h2>School postcode: {{ entry.postcode }}</h2>
+{% endif %}	
+<!--<h3>Password: {{ entry.password }}</h3>-->
+{% if entry.admin == 'true' %}
+ADMIN
+{% endif %}
+<br><br>
+<form action="{{ url_for('delete_account') }}"  method=post class=delete-entry>
+<input type=checkbox name=confirm>WARNING! Are you sure you want to delete this account?</input>
+<br><br><button type="submit" value={{entry.id}} style="float:center;" name="delete">Delete</button><br><br>
+</form>
+
+{% else %}
+<li><em>No accounts.</em>
+{% endfor %}
+{% else %}
+<em>Admin only. Login as admin to continue.</em>
+{% endif %}
+</ul>
+{% endblock %}

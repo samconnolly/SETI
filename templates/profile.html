@@ -1,0 +1,120 @@
+<!-- <! The main page, showing the blog entries > -->
+{% extends "layout.html" %}
+{% block body %}
+
+
+<script>
+/**
+* Function that tracks a click on an outbound link in Analytics.
+* This function takes a valid URL string as an argument, and uses that URL string
+* as the event label. Setting the transport method to 'beacon' lets the hit be sent
+* using 'navigator.sendBeacon' in browser that support it.
+*/
+var trackOutboundLink = function(url,name) {
+   ga('send', 'event', 'outbound', name, url, {
+     'transport': 'beacon',
+     'hitCallback': function(){document.location = url;}
+   });
+}
+</script>
+
+
+<h1>{{ account.username }}</h1>
+<br>
+<h2>{{ account.school }}</h2>
+<br>
+<!-- <!- Team Members -> -->
+	<h2> Team Members: </h2>
+	<h2> {{account.name1.split()[0]}}</h2>
+	{% if account.name2 != None%}
+		<br><h2>{{account.name2.split()[0]}}</h2>
+	{% endif %}
+	{% if account.name3 != None%}
+		<br><h2>{{account.name3.split()[0]}}</h2>
+	{% endif %}
+	{% if account.name4 != None%}
+		<br><h2>{{account.name4.split()[0]}}</h2>
+	{% endif %}
+	{% if account.name5 != None%}
+		<br><h2>{{account.name5.split()[0]}}</h2>
+	{% endif %}
+
+
+{% if account.logo != None %}
+<img src="/static/uploads/{{account.logo}}" width="160" height="160" alt="Team logo"  title="logo"  class="logo" align="left" target="_blank" hspace="30" border="5" border-color="red" >
+{% else %}
+<img src="/static/uploads/alien.png" width="160" height="160" alt="Team logo"  title="logo" border="0" class="logo" align="left" target="_blank" hspace="50"/>
+{% endif %}
+
+
+<br>
+{% if edit == 1%}
+Editing mode!
+{% endif %}
+
+
+{% if session.logged_in and session.username == account.username %}
+	<!--THIS IS YOUR ACCOUNT ({{account.id}})-->
+
+	{% if edit == 1%}
+		<h2> Team Bio </h2>
+		<br>
+		<form action="{{ url_for('edit_profile',n=account.id) }}" method=post class=edit-profile>
+		<dd><textarea name=bio rows=5 cols=40 > {{account.bio}} </textarea>
+		<dd><button style="float:center;"  type=submit value=save> Save </button>
+		</form>
+
+		<h3> Choose Team Logo </h3>
+		<form action="" method=post enctype=multipart/form-data>
+  		<p><input type=file name=file>
+     	<button style="float:center;" type=submit value=Upload> Upload </button>
+		</form>
+	{% else %}
+		<!-- bio -->
+		<h2> Team Bio </h2>
+		<br>
+		{% if account.bio != None %}
+			<h2>{{account.bio | safe}}</h2>
+
+		{% else %}
+			<h2> No bio yet... </h2>
+		{% endif %}
+
+		<form action="{{ url_for('account_profile',n=account.id,edit=1) }}" method=get class=edit-profile>
+		<dl>
+		<dd><button type=submit value=edit style="float:center;">  Edit Profile </button>
+		</dl>
+		</form>	
+	{% endif %}
+{% else %}
+
+	<!-- bio -->
+	<h2> Team Bio </h2>
+	<br>
+	{% if account.bio != None%}
+		<h2>
+		{% if account.username == 'tigerboy' %}
+			I'm main SETI investigator, interviewing Scientists at the Southampton University Physics and Astronomy department
+			to try to find out more about the science related to the ciphers we have been recieving.
+
+			As a scientist myself, I study supermassive black holes! Check out my research page here: <br><br>
+
+<a href='http://jhmatthews.github.io/' onclick="trackOutboundLink('http://jhmatthews.github.io/','JamesResearch'); return false;" > Dr. James Matthews' research page</a>
+			<br><br>
+		{% endif %}
+
+		{{account.bio | safe}}
+		</h2>
+	{% else %}
+		<h2> No bio yet... </h2>
+	{% endif %}
+{% endif %}
+<br><br><br><br><br><br>
+
+
+
+
+
+
+
+{% endblock %}

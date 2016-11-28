@@ -1,0 +1,195 @@
+<! The main page, showing the blog entries >
+{% extends "layout.html" %}
+{% block body %}
+
+<!-- <meta http-equiv="refresh" content="5"> -->
+
+{% if n < 6 %}
+<h1>Science Forum Day {{ n }}</h1>
+{% set thisTime = time.split(':')[0]|int *60*60 + time.split(':')[1]|int *60 + time.split(':')[2]|int %}
+{% set startTime = startTime.split(':')[0]|int *60*60 + startTime.split(':')[1]|int *60 + startTime.split(':')[2]|int  %}
+{% set endTime = endTime.split(':')[0]|int *60*60 + endTime.split(':')[1]|int *60 + endTime.split(':')[2]|int  %}
+
+{% if date.split('-')[0]|int == startDate.split('-')[0]|int 
+	and date.split('-')[1]|int == startDate.split('-')[1]|int 
+		and date.split('-')[2]|int == startDate.split('-')[2]|int + n -1 
+			and thisTime > startTime
+			and thisTime < endTime %}
+		<!-- It's the right day and time! -->
+{% endif %}
+
+<!-- {{ time.split(':')[0] }} -->
+
+<!-- {% if n == active or n-5 == active and active != 0 %}
+	{% set d = n+3 %}
+	<br>Time left to submit:<br>
+	<iframe src="https://freesecure.timeanddate.com/countdown/i4qzl9l3/n300/cf12/cm0/cu4/ct0/cs1/ca0/co0/cr0/ss0/cacfff/cpcfff/pc000/tcfff/fn2/fs100/szw576/szh243/iso2015-07-0{{d}}T18:00:00" allowTransparency="true" frameborder="0" width="142" height="49"></iframe>
+	<br>
+	<iframe src={{"https://free.timeanddate.com/countdown/i4qzl9l3/n300/cf12/cm0/cu4/ct0/cs1/ca0/co0/cr0/ss0/cacfff/cpcfff/pc000/tcfff/fn2/fs100/szw576/szh243/iso2016-07-0" ~ d ~ "T00:00:00"}} allowTransparency="true" frameborder="0" width="150" height="57" style="float:center"></iframe>
+
+
+{% endif %} -->
+
+
+<!-- {% if cipher != 'none' and released >= n %}
+	<p></p>
+	{{ cipher|safe }}
+	<p></p>
+	{% else %}
+	<p></p>
+	The cipher for this forum has not yet been released.
+	<p></p>
+{% endif %} -->
+
+{% else %}
+	<h1>Media Forum Day {{ n - 5 }}</h1>
+
+<!-- 	{% if cipher != 'none' and released >= n-5 %}
+		<p></p>
+		{{ cipher|safe }}
+		<p></p>
+	{% else %}
+		<p></p>
+		The cipher for this forum has not yet been released.
+		<p></p>
+	{% endif %} -->
+
+{% endif %}
+
+
+
+{% if n == active or n-5 == active and active != 0 or session.admin == True %}
+<h1>ACTIVE</h1>
+
+{% if n <=5 %}
+<h2>Click <a href="#cipher">HERE</a> or scroll down to see today's cipher</h2>
+{% endif %}
+	{% if session.logged_in %}
+		{% if counts < 4 or session.admin == True %}
+			<br>
+			{% if session.admin == False%}
+			{% if (active == 1 or active == 5) and counts < 4 %}
+			{{ counts }} posts so far - {{ 4 - counts }} to go!			
+			{% else %}
+			{{ counts }} posts so far - {{ 3 - counts }} to go!
+			{% endif %}
+			{% else %}	
+			Admin - infinite posts!
+			{% endif %}
+			<br>
+			<h2> New Post </h2>
+			<form action="{{ url_for('add_entry',n=n) }}" method=post class=add-entry>
+			<dl>
+			<dt>Title:
+			<dd><input type=text size=30 name=title>
+			<dt>Text:
+			<dd><textarea name=text rows=10 cols=100></textarea>
+			<dd><button style="float:center;" type=submit value=Share  name=submit> Submit </button>
+			</form>
+
+			<br>
+			<h2> or... Upload File </h2>
+			<h3> (image, audio and video - the following extensions only: pdf, png, jpg, jpeg, gif, mp4, ogg, mp3, wav)</h3>
+			<br>
+			<dt>Title:
+			<form action="{{ url_for('add_entry',n=n) }}" method=post enctype=multipart/form-data>
+			<dd><input type=text size=30 name=title>
+	  		<p><input type=file name=file>
+	  		
+            <dd><button style="float:center;" type=submit value=Upload name=submit> Submit </button>
+            </form>
+	     	</dl>
+		{% else %}	
+			<br>
+			No posts left on this forum today.
+			<br>
+		{% endif %}
+	{% endif %}
+
+{% endif %}
+<hr>
+<ul class=entries>
+
+{% set t = entries|length %}
+{% for entry in entries %}
+
+	{% if entry.forum == n %}
+
+		<!-- logo -->
+		{% for account in accounts %}
+			{% if account.username == entry.username %}
+				<br>
+				{% if account.logo != None %}
+
+      				<a href="{{ url_for('account_profile',n=account.id,edit=0) }}">
+					<img src="/static/uploads/{{account.logo}}" width="100" height="100" alt="Team logo"  title="logo" border="5" class="logo" align="left" target="_blank" />
+					</a>
+				{% else %}
+
+      				<a href="{{ url_for('account_profile',n=account.id,edit=0) }}">
+					<img src="/static/uploads/alien.png" width="100" height="100" alt="Team logo"  title="logo" border="5" class="logo" align="left" target="_blank" />
+					</a>
+				{% endif %}
+
+				<li><h2> 
+      			<a href="{{ url_for('account_profile',n=account.id,edit=0) }}">
+      			{{entry.username}}</a>: {{ entry.title }}
+
+      			{% if account.admin == "false" %}
+      			 - {{entry.score}} point(s)</h2>
+      			{% endif %} 
+			{% endif %}
+		{% endfor %}
+
+
+		<h3  name=time>{{ entry.time }}</h3>
+		<br>{{ entry.text.split(';;')[0]|safe }}
+		<br><br> 
+
+		<!-- COMMENTS -->
+		{% if entry.text.split(';;')|length > 1 %}
+
+			{% for account in accounts %}
+				{% if account.username == entry.text.split(';;')[2] %}
+					<a href="{{ url_for('account_profile',n=account.id,edit=0) }}">
+					<img src="/static/uploads/{{account.logo}}" width="40" height="40" alt="Team logo"  title="logo" border="3" class="logo" align="center" target="_blank" /></a>&emsp;
+					<a href="{{ url_for('account_profile',n=account.id,edit=0) }}">{{account.username}}:</a>
+				{% endif %}
+			{% endfor %}
+
+			{{ entry.text.split(';;')[1]|safe }}
+		{% endif %}
+		<!-- COMMENTS END -->
+
+		<br><br>
+		<a href="{{ url_for('show_entry',n=t) }}" ><font size="0.1em"> link </font></a>
+		<br>
+
+		{% if session.admin == True and session.logged_in %}
+			<form action="{{ url_for('delete_entry',n=n) }}"  method=post class=delete-entry>
+			<br><button type="submit" value={{entry.etime}} name="delete">Delete</button><br><br>
+			</form>
+			<form action="{{ url_for('edit_entry',n=t) }}"  method=get class=delete-entry>
+			<br><button type="submit" value={{entry.etime}} name="edit">Edit</button><br><br>
+			</form>
+		{% endif %}
+	{% endif %}
+    {% set t = t - 1 %}
+<!--     <hr> -->
+{% endfor %}
+
+<a name="cipher"></a> 
+
+{% if cipher != 'none' and ((n<6 and released >= n) or (n>5 and released >= n-5)) %}
+	<p></p>
+	{{ cipher|safe }}
+	<p></p>
+	{% else %}
+	<p></p>
+	The cipher for this forum has not yet been released.
+	<p></p>
+{% endif %}
+
+
+</ul>
+{% endblock %}
