@@ -6,18 +6,18 @@ Created on Mon Jul 28 08:48:59 2014
 Author: Sam Connolly
 
 Website application for the Southampton Physics & Astronomy SETI Cipher Challenge.
-
+Can be generally used for any forum-based online competition.
 
 To create database with admin account manually:
-    
 
-os.chdir('/location/of/this/file/')
-from myflaskapp import init_db,add_account_manual,config_init_db
-init_db()
-config_init_db()
-add_account_manual('sam','dog','true','Southampton Uni',['Sam Connolly'],[25])
+> from seti import init_db,add_account_manual,config_init_db
+> init_db()
+> config_init_db()
+> add_account_manual('Username','password','true','Institute',['Joe Bloggs'],[25]) 
+
 """
 
+# import modules
 import os
 import sqlite3
 import time
@@ -25,8 +25,6 @@ import datetime
 import json
 import geocoder
 import numpy as np
-from cStringIO import StringIO
-import xhtml2pdf
 
 # logging
 import logging      
@@ -39,47 +37,49 @@ from flask import Flask, request, session, g, redirect, url_for, abort, \
 from flask.ext.mobility import Mobility
 from flask.ext.mobility.decorators import mobile_template
 
-# emailing
+# emailing - only works with python2.7 (many LAMP servers use 2.6, so unused)
 #from flask.ext.mail import Mail, Message
 
 # uploads
 from werkzeug import secure_filename
 
-# ssl/security
-# from flask.ext.session import Session
-# SESSION_TYPE = 'redis'  # shouldn't be necessary...
-
 # create application
 app = Flask(__name__)  # name given in brackets, but providing __name__
-                            # is good for single apps, as the name will change
-Mobility(app)
+                       # is good for single apps, as the name will change
+Mobility(app)          # Create mobile version
 
 
 app.config.from_object(__name__)
 # Load default config:
 #  set username, password, database, key etc
 # MAKE SURE DEBUG IS OFF WHEN LIVE OR USERS CAN EXECUTE CODE ON THE SERVER!
+# 'blarg.db' is the name of the SQL database - archived versions (e.g. previous
+# years) should have the generic name given in ARCHIVE_DATABASE (also 'blarg.db'
+# here).
+# Keep your secret key secret. To generate a new one (which you MUST DO) use:
+# > import os
+# > os.urandom(24)
 app.config.update(dict(
-    DATABASE=os.path.join(app.root_path,'blarg.db'),
+    DATABASE=os.path.join(app.root_path,'blarg.db'), 
     ARCHIVE_DATABASE=os.path.join(app.root_path,'{0}/blarg.db'),
-    DEBUG=False,    ### change this to false before release!
+    DEBUG=False,    # !!! change this to false before release! !!!
     ACTIVE_DAY=0,
     REGISTRATION_OPEN=True,
-    MAIL_SERVER = 'smtp.soton.ac.uk',
-    MAIL_PORT = 25,
-    MAIL_USE_TLS = True,
-    MAIL_USE_SSL = False,
-    MAIL_USERNAME = 'seti@soton.ac.uk',
-    MAIL_PASSWORD = '186f-Kepler',
-    MAIL_DEFAULT_SENDER = 'seti@soton.ac.uk',
-    UPLOAD_FOLDER = '/var/www/seti/htdocs/static/uploads/',
-    SESSION_COOKIE_SECURE = True,
-    SECRET_KEY = '_~q\xf4c\x88\x1b\x0fPi\x88\x9dj?Ofj\x8f\xee\xa4\xcb\x9a\xe9U',
+    MAIL_SERVER = 'smtp.soton.ac.uk',           # only needed if using emailing
+    MAIL_PORT = 25,                             #  |
+    MAIL_USE_TLS = True,                        #  |
+    MAIL_USE_SSL = False,                       #  |
+    MAIL_USERNAME = 'seti@soton.ac.uk',         #  |
+    MAIL_PASSWORD = 'password',                 #  V
+    MAIL_DEFAULT_SENDER = 'seti@soton.ac.uk',   # emails' sender appears as this
+    UPLOAD_FOLDER = '/var/www/seti/htdocs/static/uploads/',# uploads stored here
+    SESSION_COOKIE_SECURE = True,               # MUST be True for https
+    SECRET_KEY = '\x1e\xf7\x8f~\x15-p\xddT\xb5\x00\x15\xd8w\xfb\x8c\xf7g9\xd3_\xbb\xcb\x99',
     SESSION_TYPE = 'filesystem',
-    CIPHERS = ['cipher1.txt',\
-                'cipher2.txt',\
-                'cipher3.txt',\
-                'cipher4.txt',\
+    CIPHERS = ['cipher1.txt',\  # These are the file names of the 10 ciphers.
+                'cipher2.txt',\ # ciphers 1-5 are the science forum ciphers
+                'cipher3.txt',\ # for days 1-5, ciphers 6-10 are the media
+                'cipher4.txt',\ # forum ciphers for days 1-5 respectively
                 'cipher5.txt',\
                 'cipher6.txt',\
                 'cipher7.txt',\
@@ -87,22 +87,23 @@ app.config.update(dict(
                 'cipher9.txt',\
                 'cipher10.txt'],
     RELEASED = 0,
-    START_DATE = '2016-06-06',
-    START_TIME = '09:00:00',
-    END_TIME = '11:46:00'
+    START_DATE = '2016-06-06',  # Start date and time of the competition (allows
+    START_TIME = '09:00:00',    # auto opening of the forums)
+    END_TIME = '11:46:00'       # end time
     )) 
 
+# uncomment for emailing
 #mail = Mail(app)
 #sess = Session(app)
 
-# file upload types
+# file upload types allowed
 ALLOWED_EXTENSIONS = set(['pdf', 'png', 'jpg', 'JPG', 'jpeg','JPEG', 'gif','mp4','ogg','mp3','wav'])
 
 # override config from an environment variable,
 #    to give var pointing to config file
 app.config.from_envvar('BLARG_SETTINGS', silent=True)
 
-# logging
+# logging - python/flask errors are stored here
 file_handler = FileHandler("debug.log","a")                                                                                             
 file_handler.setLevel(logging.WARNING)
 app.logger.addHandler(file_handler)
